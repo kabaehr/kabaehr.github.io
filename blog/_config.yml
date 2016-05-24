@@ -1,0 +1,27 @@
+title: Web dev and more
+description: Here i want to blog about programming expierences
+
+url: http://http://kabaehr.github.io/
+baseurl: ""
+paginate_path: "blog/page:num/"
+permalink: blog/:title/
+
+markdown: kramdown
+highlighter: rouge
+gems: [jekyll-paginate]
+paginate: 5
+
+navigation:
+ - title: Home
+   url: /index.html
+ - title: About
+   url: /about
+ - title: Contact
+   url: /contact
+
+social:
+   github: kabaehr
+   twitter: kabaehr
+   facebook: kabaehr
+
+google_analytics: "UA-58263416-1"

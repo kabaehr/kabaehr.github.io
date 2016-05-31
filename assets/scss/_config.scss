@@ -11,6 +11,7 @@ $teal:  #39CCCC;
 $green: #2ECC40;
 $olive: #3D9970;
 $lime:  #01FF70;
+$dark-blue:  #003432;
 // Warm
 $yellow:  #FFDC00;
 $orange:  #FF851B;
@@ -25,18 +26,17 @@ $grey:   #aaa;
 $black:  #111;
 
 // Color variables
-$primary-color: seagreen;
+$primary-color: $dark-blue;//seagreen;
 $secondary-color: #233E5B;
 $tertiary-color: #aaa;
 $link-color: $primary-color;
-$background-color: seagreen;
+$background-color: $dark-blue;//seagreen;
 
 $bad-color: $red; // Bad color for errors, validation etc.
 $good-color: $green; // Good color for success etc.
 $info-color: $blue; // Good color for success etc.
 $warning-color: $orange; // Good color for success etc.
 $subtle-color: $grey; // Subtle color for subtle text
-
 
 /***************
 CONSISTENT SETTINGS
@@ -46,7 +46,6 @@ $br: 5px; // Border-radius
 $btn-br: 5px; // Button border-radius
 $padding: 40px; // Padding and margins
 $line-height: 44px; // Consistent height for buttons, inputs etc.
-
 
 /***************
 TYPE SETTINGS

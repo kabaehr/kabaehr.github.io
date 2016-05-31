@@ -1,5 +1,5 @@
 title: Web dev and more
-description: Here i want to blog about programming expierences
+description: Here i want to blog about programming experiences
 
 url: http://http://kabaehr.github.io/
 baseurl: ""
@@ -16,12 +16,10 @@ navigation:
    url: /index.html
  - title: About
    url: /about
- - title: Contact
-   url: /contact
 
 social:
    github: kabaehr
    twitter: kabaehr
-   facebook: kabaehr
+   email: katharina.baehr@zuehlke.com
 
 google_analytics: "UA-58263416-1"

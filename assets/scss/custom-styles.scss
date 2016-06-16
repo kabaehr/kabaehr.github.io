@@ -1,0 +1,30 @@
+.kabaehr-img {
+    max-width: 70% !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+body {
+    a {
+        &.post-link{
+            &:hover {
+                color: $hightlight-color;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .post {
+        a:hover {
+            color: $hightlight-color;
+        }
+    }
+
+    h1.postTitle {
+        color: $primary-color !important;
+    }
+
+    twitterwidget {
+        margin: 10px auto 10px;
+    }
+}

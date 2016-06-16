@@ -1,9 +1,0 @@
----
-layout: post
-title:  "Test Post"
-date:   2016-05-25
----
-
-<p class="intro"><span class="dropcap">L</span>Lorem ipsum....</p>
-
-Lorem ipsum...

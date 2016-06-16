@@ -8,10 +8,10 @@ title: About Me
 		
 
 	<p class="intro">I am a web-loving software engineer currently working at <a href="https://www.zuehlke.com/de/en/">Zuehlke Engineering</a> in Germany.
-	After studying Computer Science and Media i am now doing primarily web related stuff and developing single page applications.
-	When i have the time i like to try out new promising technologies and keep on track with the fast moving and exciting web.</p>
+	After studying Computer Science and Media I am now doing primarily web related stuff and developing single page applications.
+	When I have the time I like to try out new promising technologies and keep on track with the fast moving and exciting web.</p>
 
-	<p class="intro">This is where i want to blog about my experiences, problem solutions and other cool things i mainly faced in my projects.
+	<p class="intro">This is where I want to blog about my experiences, problem solutions and other cool things I mainly faced in my projects.
 	
 	</p>
 

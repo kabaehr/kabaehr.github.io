@@ -61,7 +61,7 @@ Therefore, no wonder but even more pleasant that they say that Aurelia can alrea
 <br />
 
 <p>
-A strong argument for Angular 2 was that is backed by Google and has a greater community. 
+A strong argument for Angular 2 was that it is backed by Google and has a greater community. 
 But I assume that the Aurelia community will grow very fast and the help you get on <a href="http://stackoverflow.com/questions/tagged/aurelia" alt="link to stack overflow">Stack Overflow</a> and in the <a href="https://gitter.im/aurelia/Discuss" alt="link to aurelia gitter channel">Gitter channel</a> is already awesome.
 While Google also like to dump projects, <a href="http://durandal.io/" alt="link to durandel">Durandal Inc.</a> is promoting Aurelia as their product, want to make business with it and consider developer as their customers.
 </p>

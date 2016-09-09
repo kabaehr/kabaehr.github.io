@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Aurelia advanced I18N"
-date:   2016-08-28
+date:   2016-08-04
 ---
 
 

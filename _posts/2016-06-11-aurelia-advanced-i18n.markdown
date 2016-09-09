@@ -92,7 +92,7 @@ export class CnfValueConverter {
 
 <p>
 This approach was fitting for me because I don´t need the options. You could also extend the custom value converter parameters with a options object.
-The custom date format value converter would look similar. Than you can use them like this
+The custom date format value converter would look similar. Then you can use them like this
 
 </P>
 

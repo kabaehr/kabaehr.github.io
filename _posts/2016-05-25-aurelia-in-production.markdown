@@ -26,13 +26,13 @@ the app will be additional be able to speak over Bluetooth LE with several devic
 </p>
 
 <p>
-Because of high intersection of functionality between the applications and also high pricing and timing pressure we choose a Hybrid approach with <a href="https://cordova.apache.org/" alt="link to cordova homepage">Cordova </a>.
-We already implemented a Cordova App with BLE integration for another project. So we know already that using the native API will work pretty well.
+Because of high intersection of functionality between the applications and also high pricing and timing pressure we choose a hybrid approach with <a href="https://cordova.apache.org/" alt="link to cordova homepage">Cordova</a>.
+We already implemented a Cordova App with BLE integration for another project. So we knew already that using the native API will work pretty well.
 
 </p>
 
 <p>
-To continue with Angular 1.x was no option and thus we compared Angular 2 and Aurelia. 
+To continue with Angular 1.x was not an option and thus we compared Angular 2 and Aurelia. 
 The decision was quite hard regarding that both Frameworks are still not released in version 1.x.
 We tried both and the Angular 2 experience was still not very good, though Angular 2 is already in release candidate.
 While we had real fun with Aurelia and made great progress.
@@ -43,7 +43,7 @@ While we had real fun with Aurelia and made great progress.
 
 <p>
 There is a chance that Ember would have been a proper choice, some would suggest React, 
-but we wanted to use something that is similar to what we are used to and plays well together with <a href="https://www.typescriptlang.org/">TypeScript</a>.
+but we wanted to use something that is similar to what our developers used to and plays well together with <a href="https://www.typescriptlang.org/">TypeScript</a>.
 </p>
 
 <h3> Why we chose Aurelia </h3>

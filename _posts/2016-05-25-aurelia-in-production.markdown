@@ -7,7 +7,7 @@ date:   2016-05-25
 
 <p class="intro">
     <span class="dropcap">I</span>
-     am into <a href="aurelia.io" alt="link to aurelia homepage">Aurelia</a> for some time now and like it more every day. I wrote a <a href="http://blog.zuehlke.com/en/aurelia-the-next-gen-javascript-framework/">blog post</a> about Aurelia in January 
+     am into <a href="http://aurelia.io" alt="link to aurelia homepage">Aurelia</a> for some time now and like it more every day. I wrote a <a href="http://blog.zuehlke.com/en/aurelia-the-next-gen-javascript-framework/">blog post</a> about Aurelia in January 
      after I developed my first demo application and presented it to interested colleagues. Now we will use Aurelia in production for a very large project and I am very excited 😃
 </p>
 

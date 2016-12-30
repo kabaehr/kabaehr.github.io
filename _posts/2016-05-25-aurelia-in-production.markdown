@@ -7,7 +7,7 @@ date:   2016-05-25
 
 <p class="intro">
     <span class="dropcap">I</span>
-     am into <a href="aurelia.io" alt="link to aurelia homepage">Aurelia</a> for some time now and like it more every day. I wrote a <a href="http://blog.zuehlke.com/en/aurelia-the-next-gen-javascript-framework/">blog post</a> about Aurelia in January 
+     am into <a href="http://aurelia.io" alt="link to aurelia homepage">Aurelia</a> for some time now and like it more every day. I wrote a <a href="http://blog.zuehlke.com/en/aurelia-the-next-gen-javascript-framework/">blog post</a> about Aurelia in January 
      after I developed my first demo application and presented it to interested colleagues. Now we will use Aurelia in production for a very large project and I am very excited 😃
 </p>
 
@@ -21,19 +21,19 @@ little to no documentation and the code examples that we found were already old.
 
 <p>
 Now, one year later we won this IoT project and had to decide which framework we want to use. The requirements for the project are quite extensive.
-We will develop a responsive Web application and an App with the same functionality besides that 
+We will develop a responsive web application and an app with the same functionality besides that 
 the app will be additional be able to speak over Bluetooth LE with several devices and show some configuration interface. 
 </p>
 
 <p>
-Because of high intersection of functionality between the applications and also high pricing and timing pressure we choose a Hybrid approach with <a href="https://cordova.apache.org/" alt="link to cordova homepage">Cordova </a>.
-We already implemented a Cordova App with BLE integration for another project. So we know already that using the native API will work pretty well.
+Because of high intersection of functionality between the applications and also high pricing and timing pressure we choose a hybrid approach with <a href="https://cordova.apache.org/" alt="link to cordova homepage">Cordova</a>.
+We already implemented a Cordova app with BLE integration for another project. So we knew already that using the native API will work pretty well.
 
 </p>
 
 <p>
-To continue with Angular 1.x was no option and thus we compared Angular 2 and Aurelia. 
-The decision was quite hard regarding that both Frameworks are still not released in version 1.x.
+To continue with Angular 1.x was not an option and thus we compared Angular 2 and Aurelia. 
+The decision was quite hard regarding that both frameworks are still not released in version 1.x.
 We tried both and the Angular 2 experience was still not very good, though Angular 2 is already in release candidate.
 While we had real fun with Aurelia and made great progress.
 </p>
@@ -43,7 +43,7 @@ While we had real fun with Aurelia and made great progress.
 
 <p>
 There is a chance that Ember would have been a proper choice, some would suggest React, 
-but we wanted to use something that is similar to what we are used to and plays well together with <a href="https://www.typescriptlang.org/">TypeScript</a>.
+but we wanted to use something that is similar to what our developers used to and plays well together with <a href="https://www.typescriptlang.org/">TypeScript</a>.
 </p>
 
 <h3> Why we chose Aurelia </h3>

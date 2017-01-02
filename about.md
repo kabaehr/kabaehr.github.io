@@ -11,7 +11,7 @@ title: About Me
 	After studying Computer Science and Media I am now doing primarily web related stuff and developing single page applications.
 	When I have the time I like to try out new promising technologies and keep on track with the fast moving and exciting web.</p>
 
-	<p class="intro">This is where I want to blog about my experiences, problem solutions and other cool things I mainly faced in my projects.
+	<p class="intro">This is where I want to blog about my experiences, problem solutions and other cool things I mainly faced in my projects. <sub>Opinions are my own, not my company ones.</sub>
 	
 	</p>
 

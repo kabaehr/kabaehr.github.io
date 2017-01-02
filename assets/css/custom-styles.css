@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$hightlight-color".
-        on line 11 of c:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss
+        on line 12 of C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss
 
-6: }
 7: body {
-8:     a {
-9:         &.post-link{
-10:             &:hover {
-11:                 color: $hightlight-color;
-12:                 text-decoration: none;
-13:             }
-14:         }
-15:     }
-16: 
+8:     font-family: "Open Sans", Helvetica, Arial, sans-serif;
+9:     a {
+10:         &.post-link{
+11:             &:hover {
+12:                 color: $hightlight-color;
+13:                 text-decoration: none;
+14:             }
+15:         }
+16:     }
+17: 
 
 Backtrace:
-c:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss:11
+C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss:12
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -97,4 +97,4 @@ c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/adap
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$hightlight-color\".\A         on line 11 of c:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss\A \A 6: }\A 7: body {\A 8:     a {\A 9:         &.post-link{\A 10:             &:hover {\A 11:                 color: $hightlight-color;\A 12:                 text-decoration: none;\A 13:             }\A 14:         }\A 15:     }\A 16: "; }
+  content: "Error: Undefined variable: \"$hightlight-color\".\A         on line 12 of C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss\A \A 7: body {\A 8:     font-family: \"Open Sans\", Helvetica, Arial, sans-serif;\A 9:     a {\A 10:         &.post-link{\A 11:             &:hover {\A 12:                 color: $hightlight-color;\A 13:                 text-decoration: none;\A 14:             }\A 15:         }\A 16:     }\A 17: "; }

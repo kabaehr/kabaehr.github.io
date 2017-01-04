@@ -7,9 +7,9 @@ date: 2017-01-04
 
 
 <p class="intro">
-<span class="dropcap">I</span>n late March 2016, I wrote my first post and promised I would write some more about our experiences.
-Since then I only wrote one single post. This was not only because of sparse time, or laziness, this was also because we hadn´t many problems with Aurelia.
-There were no burning topics I wanted to write about or where I thought I should write it down to help someone. And often there were already some blog or Stack Overflow posts about it.
+<span class="dropcap">I</span>n late March 2016, I wrote my first post and promised I would write some more about our experiences with Aurelia.
+Since then I only wrote one single post. This was not only because of missing time, or laziness, this was also because we hadn´t many problems with Aurelia itself.
+There were no burning topics I wanted to write about or where I thought I should write it down to help someone.
 But now I want to recap and write about all the experiences and remarkable things we faced in our Aurelia project.
 </p>
 
@@ -115,6 +115,9 @@ There are a huge number of official libraries, like for pubSub messaging, dialog
 Therefore the most time we needed some common feature, we hadn´t to start at 0 and could make use of some already existing implementation. Apart from this even jQuery plugins are easy integrable.
 For me, this is a great plus point for a framework. When you don´t have to implement the same commonly needed thing always again and again, or copy the code from your last project.
 
+For the most enterprise projects testing is a really important topic and I didn´t mentioned it yet, because there is not so much I can say.
+The <a href="https://github.com/aurelia/testing" title="">aurelia-testing</a> library works really well togheter with Jasmine and Karma 
+and End2End testing with Protractor is also not a big deal. This setup works for us and we didn´t tried to combine other testing libraries.
 
 
 <h3>No resolutions for 2017 yet?</h3>

@@ -7,10 +7,10 @@ date: 2017-01-04
 
 
 <p class="intro">
-<span class="dropcap">I</span>n late March 2016, I wrote my first post and promised I would write some more about our experiences with Aurelia. 
+<span class="dropcap">I</span>n late March 2016, I wrote my first post and promised I would write some more about my experiences with Aurelia. 
 Since then I only wrote one single post. This was not only because of missing time, or laziness, this was also because we hadn´t many problems with Aurelia itself.
 There were no burning topics I wanted to write about or where I thought I should write it down to help someone.
-But now I want to recap and write about all the experiences and remarkable things we faced in our Aurelia project.
+But now I want to recap and write about all the experiences and remarkable things I faced in our Aurelia project.
 </p>
 
 <h3>How Aurelia fulfilled our expectations</h3>

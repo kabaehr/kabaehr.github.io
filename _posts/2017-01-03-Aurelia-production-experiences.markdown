@@ -34,7 +34,7 @@ include a breaking change. If we take a look at the official
 <a href="https://www.npmjs.com/search?q=aurelia&page=2&ranking=optimal">aureliaeffect libraries</a> at npm, we see that nearly all
 libraries are still in version 1.x.x.
 
-<img src="{{ '/assets/img/list-of-aurelia-libraries.jpg' | prepend: site.baseurl }}" alt="list of aurelia libraries and there versions"/>
+<img src="{{ '/assets/img/list-of-aurelia-libs.jpg' | prepend: site.baseurl }}" alt="list of aurelia libraries and there versions"/>
 
 The only exception seems to be the <em>aurelia-bootstraper</em> which is version 2.0.1. But if you take a look at the corresponding
 <a href="http://blog.aurelia.io/2016/12/08/big-aurelia-release-update/">blog post</a> that got published (like always if something got released), you see that

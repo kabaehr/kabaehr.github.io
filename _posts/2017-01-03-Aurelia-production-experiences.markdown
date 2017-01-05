@@ -116,7 +116,7 @@ Therefore the most time we needed some common feature, we hadn´t to start at 0 
 For me, this is a great plus point for a framework. When you don´t have to implement the same commonly needed thing always again and again, or copy the code from your last project.
 
 For the most enterprise projects testing is a really important topic and I didn´t mentioned it yet, because there is not so much I can say.
-The <a href="https://github.com/aurelia/testing" title="">aurelia-testing</a> library works really well togheter with Jasmine and Karma 
+The <a href="https://github.com/aurelia/testing" title="">aurelia-testing</a> library works really well together with Jasmine and Karma 
 and End2End testing with Protractor is also not a big deal. This setup works for us and we didn´t tried to combine other testing libraries.
 
 

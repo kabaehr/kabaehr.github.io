@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Aurelia Experiences"
+subtitle: "In this post I want to recap and write about all the experiences and remarkable things I faced in our Aurelia project."
 date: 2017-01-04
+author:     "Katharina Bähr"
+tags: [Aurelia]
 ---
-
 
 
 <p class="intro">

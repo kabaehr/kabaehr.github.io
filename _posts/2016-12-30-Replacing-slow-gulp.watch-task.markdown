@@ -2,12 +2,14 @@
 layout: post
 title:  "Replacing slow gulp.watch task"
 date:   2016-12-30
+subtitle: "gulp.watch went so slow it was nearly impossible to continue working with this, so I searched for a solution."
+author: "Katharina Bähr"
 ---
 
 
 <p class="intro">
 <span class="dropcap">I</span> am currently working on a big project, meaning that we have a lot of files that needs to be watched. Somewhen our <em>gulp watch</em> task started to be very slow and to need round about 2 minutes to ramp up (initial gulp watch call) 
-and more than 8 seconds for a refresh when edited a single file. It was nearly impossible to continue working with this, so we searched for a solution.
+and more than 8 seconds for a refresh when edited a single file. It was nearly impossible to continue working with this, so I searched for a solution.
 </p>
 
 We were using the built-in <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" title="link to gulp.watch"><em>gulp.watch</em></a> and the solution for us was to just replace it with the 

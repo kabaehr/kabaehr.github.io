@@ -2,6 +2,10 @@
 layout: post
 title:  "Aurelia advanced I18N"
 date:   2016-09-04
+subtitle: "Recently I had to implement i18n in order to support several languages and users all around the world.
+    I used the official aurelia-18n library and had some difficulties make
+    everything work in Safari (Cordova iOS App) and with Typescript"
+author: "Katharina Bähr"
 ---
 
 

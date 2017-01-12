@@ -2,6 +2,8 @@
 layout: post
 title:  "Aurelia in Production"
 date:   2016-05-25
+subtitle: "We will use Aurelia in production for a very large project and I am very excited :)"
+author: "Katharina Bähr"
 ---
 
 

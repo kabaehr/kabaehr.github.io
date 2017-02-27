@@ -17,7 +17,7 @@ But now I want to recap and write about all the experiences and remarkable thing
 
 <h3>How Aurelia fulfilled our expectations</h3>
 
-In the post <a href="/aurelia-in-production/" title="link to the Aurelia in production post">Aurelia in Production</a>, I already explained why we chose Aurelia.
+In the post <a href="http://kabaehr.de/blog/aurelia-in-production/" title="link to the Aurelia in production post">Aurelia in Production</a>, I already explained why we chose Aurelia.
 Some of the reasons were that Aurelia looked much cleaner, sophisticated and promising than other alternatives like <a href="https://angular.io/" title="link to Angular">Angular</a> at that time. Let´s see how our considerations worked out.
 
 First I want to state out that we are still happy with the decision to take Aurelia.

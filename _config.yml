@@ -6,7 +6,7 @@ baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
 
-future: true
+future: false
 
 markdown: kramdown
 highlighter: rouge

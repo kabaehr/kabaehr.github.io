@@ -33,7 +33,7 @@ Custom elements always have a view and optionally own logic. That means a custom
 
 A custom element can be a complicated UI control like a *datepicker* or a *selectbox* with search capability but it can be just a few lines of HTML with or without a little bit of JS as well.
 
-Using custom elements even for simpler components has some advantages regarding readability, maintainability and encapsulation. May take a look at <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" title="">the custom element examples</a> to get a better idea.
+Using custom elements even for simpler components has some advantages regarding readability, maintainability and encapsulation. May take a look at <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" title="link to github gist examples">the custom element examples</a> to get a better idea.
 
 
 <h3>Custom Attribute</h3>
@@ -43,7 +43,7 @@ A custom attribute can be used to extend the functionality of any existing HTML 
 
 Actually, a custom attribute has no additional HTML. Nevertheless, it can make sense to inject some over JS. But normally you just use the HTMLElement, it´s events, properties, innerHTML and such to extend it for your needs.
 
-You find the <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" title=""> examples for custom attributes here</a>.
+You find the <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" title="link to github gist examples"> examples for custom attributes here</a>.
 
 
 <h3> Never stop practicing </h3>

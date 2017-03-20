@@ -50,6 +50,6 @@ You find the <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" tit
 
 You may now understand the idea behind custom elements and custom attributes. But to make proper use of it, you may just need some practice. To get a feeling when to encapsulate some parts of your application into a custom element or a custom attribute. When it make sense and when not.
 
-It often happens that at the start you think that something is not worth an own component because the code is just three or four lines of code. Later on, this starts to grow and it gets worth of encapsulation or you want to use it in several views. Maybe even worth two components who plays together. That´s the way it should be. Don´t follow the component principle just to follow it. Build components when it makes sense. Start simple, extend it, refactor it and repeat.
+It often happens that at the start you think that something is not worth an own component because the code is just three or four lines of code. Later on, this starts to grow and it gets worth of encapsulation or you want to use it in several views. That´s the way it should be. Don´t follow the component principle just to follow it. Build components when it makes sense. Start simple, extend it, refactor it and repeat.
 
 

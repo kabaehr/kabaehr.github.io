@@ -41,7 +41,7 @@ Using custom elements even for simpler components has some advantages regarding 
 
 A custom attribute can be used to extend the functionality of any existing HTML element and has **no** view. You can transform simple elements to more advanced ones, e.g. let selectboxes load data from an API´s, make data transformations on text elements and much more.
 
-Actually, a custom attribute has no additional HTML. Nevertheless, it can make sense to inject some over JS. But normally you just use the HTMLElement, it´s events, properties, innerHTML and such to extend it for your needs.
+Actually, a custom attribute has no additional HTML. Nevertheless, it can make sense to <a href="http://www.jeremyg.net/entry/adding-a-view-to-a-custom-attribute-in-aurelia" title="add a view to custom attributes">inject some over JS</a>. But normally you just use the HTMLElement, it´s events, properties, innerHTML and such to extend it for your needs.
 
 You find the <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb" title="link to github gist examples"> examples for custom attributes here</a>.
 

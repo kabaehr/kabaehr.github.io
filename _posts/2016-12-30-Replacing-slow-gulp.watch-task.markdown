@@ -59,7 +59,7 @@ watch(paths.source)
 });
 {% endhighlight %}
 
-The main changes are that <code>gulp.watch</code> takes a function as the second parameter that will be executed as soon as one of the files changed and <code>gulp-watch</code> only takes the list of file paths as parameter and
+The main changes are that <code>gulp.watch</code> takes a function as the second parameter which will be executed as soon as one of the files changed.<code>gulp-watch</code> only takes a list of file paths as parameter and
 you have to listen for the change event to handle the change.
 
 

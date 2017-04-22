@@ -20,7 +20,7 @@ I used the beta version of the library but shortly afterwards <a href="http://bl
 
 </p>
 
-<h3>Using aurelia-i18n with Typescript</h3>
+<h2>Using aurelia-i18n with Typescript</h2>
 
 <p>
 Like on the <a href="https://github.com/aurelia/i18n" title="link to aurelia-i18n project">Github page</a> suggested you have to execute
@@ -58,7 +58,7 @@ or follow the steps <a href="https://github.com/aurelia/i18n#how-to-install-this
 </p>
 </p>
 
-<h3>Translation with ValueConverter</h3>
+<h2>Translation with ValueConverter</h2>
 
 <p>
 For converting numbers with the <a href="https://github.com/aurelia/i18n#formatting-numbers-with-nfvalueconverter" title="link to nfValueConverter"> number format value converter
@@ -106,7 +106,7 @@ The custom date format value converter would look similar. Then you can use them
 {% endhighlight %}
 
 
-<h3>Locale selectbox</h3>
+<h2>Locale selectbox</h2>
 <p>
 I had to implement a selectbox to let the user easily change the locale. I wanted to style the selectbox properly and enable the user to search for a specific locale. Thus I choose the
  <a href="https://select2.github.io/" title="link to select2 plugin">Select2 plugin</a> and orientated on this <a href="http://ilikekillnerds.com/2015/08/aurelia-custom-element-using-select2-tutorial/">blog post from Dwayne</a>.
@@ -163,7 +163,7 @@ export class LanguageSwitch {
 let options = [ {'key': 'de', 'label': 'Germany'}, {'key': 'en', 'label': 'English'}];
 {% endhighlight %}
 
-<h3>Safari und Intl</h3>
+<h2>Safari und Intl</h2>
 <p>
 <em>aurelia-i18n</em> uses <a href="" title="link to i18next">i18next</a> a widely known internationalization library which depends on the <em>window.Intl</em> API. Unfortunately the 
 <a href="http://caniuse.com/#search=intl" title="support of intl"> browser support </a> for this API is limited.
@@ -205,7 +205,7 @@ You can include the whole folder or use the <em>complete.js</em> for importing a
 For more optimizations you could load <em>intl.js</em> and all the needed locale files only if <em>window.intl</em> is not available.
 </p>
 
-<h3>Unit Testing</h3>
+<h2>Unit Testing</h2>
 <p>
 When using the <a href="https://github.com/aurelia/i18n#translating-with-the-tvalueconverter" title="link to tvalue converter">TValueConverter</a> or
  <a href="https://github.com/aurelia/i18n#translating-with-the-tbindingbehavior" title="link to t binding behavior"> TBindingBehavior</a> in the view of the custom element I was testing, 

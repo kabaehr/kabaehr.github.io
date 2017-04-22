@@ -19,7 +19,7 @@ We firstly tried Angular 2 (alpha 0.26/0.27) at our camp (some company training 
 little to no documentation and the code examples that we found were already old. However Angular 2 was still beta.
 </p>
 
-<h3>So what now?</h3>
+<h2>So what now?</h2>
 
 <p>
 Now, one year later we won this IoT project and had to decide which framework we want to use. The requirements for the project are quite extensive.
@@ -48,7 +48,7 @@ There is a chance that Ember would have been a proper choice, some would suggest
 but we wanted to use something that is similar to what our developers used to and plays well together with <a href="https://www.typescriptlang.org/">TypeScript</a>.
 </p>
 
-<h3> Why we chose Aurelia </h3>
+<h2> Why we chose Aurelia </h2>
 
 <p>
 Beside the better development experience we evaluated some more topics including community, performance, stability, backing and status.

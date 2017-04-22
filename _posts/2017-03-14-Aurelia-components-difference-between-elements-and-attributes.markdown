@@ -2,7 +2,7 @@
 layout: post
 title: "Aurelia components: difference between element and attribute"
 subtitle: "Custom elements and custom attributes are two different concepts and the distinction is not always clear"
-date: 2018-03-14
+date: 2017-03-14
 author:     "Katharina Bähr"
 tags: [Aurelia]
 ---
@@ -12,7 +12,7 @@ tags: [Aurelia]
 Therefore this topic concerns also other component based frameworks. Despite this, the examples are written in Aurelia.
 
 
-<h3>What are custom components anyway</h3>
+<h2>What are custom components anyway</h2>
 
 **TL;DR** custom components are great and can be used like standard HTML tags e.g. <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code> or <code>&lt;span&gt;</code>
 
@@ -27,7 +27,7 @@ Because this sounds great, pretty simple to use and so overdue, the most modern 
 
 Let´s start with the differences.
 
-<h3> Custom Element</h3>
+<h2> Custom Element</h2>
 
 Custom elements always have a view and optionally own logic. That means a custom element is either a HTML only component or have a HTML and a JS part. CSS is often also included and referenced from the view, however, inline styles are also possible.
 
@@ -36,7 +36,7 @@ A custom element can be a complicated UI control like a *datepicker* or a *selec
 Using custom elements even for simpler components has some advantages regarding readability, maintainability and encapsulation. May take a look at <a href="" title="">the examples</a> to get a better idea.
 
 
-<h3>Custom Attribute</h3>
+<h2>Custom Attribute</h2>
 
 
 A custom attribute can be used to extend the functionality of any existing HTML element and has **no** view. You can transform simple elements to more advanced ones, e.g. let selectboxes load data from an API´s, make data transformations on text elements and much more.
@@ -46,7 +46,7 @@ Actually, a custom attribute has no additional HTML. Nevertheless, it can make s
 You find some <a href="" title=""> examples for custom attributes</a> here.
 
 
-<h3> Never stop practicing </h3>
+<h2> Never stop practicing </h2>
 
 You may now understand the idea behind custom elements and custom attributes. But to make proper use of it, you may just need some practice. To get a feeling when to encapsulate some parts of your application into a custom element or a custom attribute. When it make sense and when not.
 

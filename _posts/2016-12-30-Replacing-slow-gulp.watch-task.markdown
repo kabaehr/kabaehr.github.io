@@ -16,7 +16,7 @@ We were using the built-in <a href="https://github.com/gulpjs/gulp/blob/master/d
 <a href="https://www.npmjs.com/package/gulp-watch" title="link to gulp.watch"><em>gulp-watch</em> plugin</a> which brought a huge speed improvement.
 Maybe there are other optimizations that would have solved the problem, but to just change from <em>gulp.watch</em> to <em>gulp-watch</em> was a pretty easy solution and the main work was research.
 
-<h3>gulp.watch vs. gulp-watch</h3>
+<h2>gulp.watch vs. gulp-watch</h2>
 
 <p>
 
@@ -29,7 +29,7 @@ Gaze whereas uses <a href="" title="">globbing, fs.watch and "the best out of ot
 to be more common and has a lot more of stars, contributors and forks on Gitub then <em>gaze</em>.
 </p>
 
-<h3>Translating your tasks</h3>
+<h2>Translating your tasks</h2>
 
 The API´s of <em>gulp.watch</em> and <em>gulp-watch</em> are looking somehow different and so it needed a little time to find out, how to exactly refactor the task.
 We are using <em>browserSync</em>, so the page reloads automatically as soon as a changed was detected, so the task before looked like this:
@@ -63,7 +63,7 @@ The main changes are that <em>gulp.watch</em> takes a function as the second par
 you have to listen for the change event to handle the change.
 
 
-<h3>The Problem will be solved</h3>
+<h2>The Problem will be solved</h2>
 
 It seems like the gulp team has already <a href="https://github.com/gulpjs/gulp/blob/4.0/index.js" title="link to chokidar change">switched from <em>gaze</em> to <em>chokidar</em> on the 4.0 branch</a> so this problem might be solved soon.
 Maybe this will help someone in the meantime or in older not yet updated projects.

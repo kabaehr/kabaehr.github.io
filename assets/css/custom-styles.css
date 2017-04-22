@@ -1,5 +1,5 @@
 /*
-Error: Undefined variable: "$hightlight-color".
+Error: Undefined variable: "$highlight-color".
         on line 12 of C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss
 
 7: body {
@@ -7,7 +7,7 @@ Error: Undefined variable: "$hightlight-color".
 9:     a {
 10:         &.post-link{
 11:             &:hover {
-12:                 color: $hightlight-color;
+12:                 color: $highlight-color;
 13:                 text-decoration: none;
 14:             }
 15:         }
@@ -87,14 +87,19 @@ c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:4
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
 c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:331:in `block in watch'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
-c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:294:in `watch'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/sass_compiler.rb:46:in `watch!'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/watch_project.rb:41:in `perform'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
+c:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
+c:/Ruby23-x64/bin/compass:22:in `load'
+c:/Ruby23-x64/bin/compass:22:in `<main>'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$hightlight-color\".\A         on line 12 of C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss\A \A 7: body {\A 8:     font-family: \"Open Sans\", Helvetica, Arial, sans-serif;\A 9:     a {\A 10:         &.post-link{\A 11:             &:hover {\A 12:                 color: $hightlight-color;\A 13:                 text-decoration: none;\A 14:             }\A 15:         }\A 16:     }\A 17: "; }
+  content: "Error: Undefined variable: \"$highlight-color\".\A         on line 12 of C:/Users/kaba/Documents/Blog/kabaehr.github.io/assets/scss/custom-styles.scss\A \A 7: body {\A 8:     font-family: \"Open Sans\", Helvetica, Arial, sans-serif;\A 9:     a {\A 10:         &.post-link{\A 11:             &:hover {\A 12:                 color: $highlight-color;\A 13:                 text-decoration: none;\A 14:             }\A 15:         }\A 16:     }\A 17: "; }

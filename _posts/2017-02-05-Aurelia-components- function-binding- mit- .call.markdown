@@ -13,7 +13,7 @@ tags: [Aurelia]
 Aurelia and how you can use them to write awesome custom components/attributes, which can help to avoid complex view models. 
 This is the first post about function bindings, there will be further posts about other things.
 
-<h3>.call binding command</h3>
+<h2>.call binding command</h2>
 
 You can use the <code>.call</code> binding command to pass functions references into your custom component. With this, you can achieve callbacks or kind of interceptors you 
 can call before doing something inside the component. Therefore you can execute code from within your component that is located somewhere outside in the containing model. 
@@ -34,7 +34,7 @@ It is possible to write the custom attribute in a more readable fashion, at leas
 May take a look <a href="http://blog.aurelia.io/2017/01/12/new-aurelia-features-and-release-notes-1-12-2017/">here at the Aurelia Blog.</a>
 
 
-<h3>Examples</h3>
+<h2>Examples</h2>
 
 In the first example, I use the <code>.call</code> bind to pass a callback function on a custom checkbox element.
 We are passing our callback function and the labels for the checkbox.
@@ -124,7 +124,7 @@ loadItems() {
 {% endhighlight %}
 
 
-<h3>.call is your friend</h3>
+<h2>.call is your friend</h2>
 
 The <code>.call</code> binding is somehow underestimated, at least it is not much <a href="http://aurelia.io/hub.html#/doc/article/aurelia/framework/latest/cheat-sheet/5">documented</a>, and the most examples you can find about it are only at Stack Overflow. If you want to react in your view model on something that happens inside your component, 
 this can be a much better solution then sending events around or setting up a shared service.

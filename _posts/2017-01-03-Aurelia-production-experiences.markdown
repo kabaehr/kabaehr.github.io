@@ -15,7 +15,7 @@ There were no burning topics I wanted to write about or where I thought I should
 But now I want to recap and write about all the experiences and remarkable things I faced in our Aurelia project.
 </p>
 
-<h3>How Aurelia fulfilled our expectations</h3>
+<h2>How Aurelia fulfilled our expectations</h2>
 
 In the post <a href="http://kabaehr.de/blog/aurelia-in-production/" title="link to the Aurelia in production post">Aurelia in Production</a>, I already explained why we chose Aurelia.
 Some of the reasons were that Aurelia looked much cleaner, sophisticated and promising than other alternatives like <a href="https://angular.io/" title="link to Angular">Angular</a> at that time. Let´s see how our considerations worked out.
@@ -24,7 +24,7 @@ First I want to state out that we are still happy with the decision to take Aure
 It really keeps the promises written on the <a href="http://aurelia.io/hub.html#/doc/article/aurelia/framework/latest/what-is-aurelia/3">website</a> and stays out of your way, 
 is highly extensible and unobtrusive.
 
-<h3>Aurelia Releases</h3>
+<h2>Aurelia Releases</h2>
 
 We started with some Aurelia beta version and it took a few month until Aurelia got <a href="http://blog.aurelia.io/2016/07/27/aurelia-1-0-is-here/"></a>released.
 We had not a single breaking change with the update from beta to the release candidate and even the update
@@ -49,7 +49,7 @@ But I think it shows that they are working on Aurelia with a good planning, upfr
 who worked on a couple of frontend framework already.
 
 
-<h3>Easy to learn</h3>
+<h2>Easy to learn</h2>
 
 One reason why we chose Aurelia over React was because we wanted something to what our Team is used to. 
 The most of them are familiar with Angular 1.x, but we also have developers with a C#, WPF or Java background. 
@@ -66,7 +66,7 @@ In my opinion and experience, Aurelia is quite easy to learn and to understand, 
 Hence you can easy find and hire developers, even if they never heard about Aurelia.
 
 
-<h3>Community</h3>
+<h2>Community</h2>
 
 The framework is still not so commonly known, but the community is already great. Nearly every time when the documentation was not enough, we found answers in blog posts, their <a href="https://gitter.im/aurelia/Discuss" title="link to the aurelia gitter channel">gitter channel</a>
 or at <a href="http://stackoverflow.com/questions/tagged/aurelia" title="link to stack overflow with tag aurelia">Stack Overflow</a>. And it´s not just a rumor that even core <a href="http://aurelia.io/team.html" title="link to aurelia team">team members</a> are answering your questions. How great is that?
@@ -78,7 +78,7 @@ One thing I was really amazed by, is that an Aurelia core developer wrote me an 
 they really care about the developers and the experience they deliver to the community.
 
 
-<h3>Support</h3>
+<h2>Support</h2>
 
 In difference to other frameworks, Aurelia is not just some side project, that emerged because somebody needed exactly that tool himself and open sourced it later.
 Aurelia is a product of a company and there are a lot of people that are working on it.
@@ -89,7 +89,7 @@ Some <a href="http://aurelia.io/hub.html#/doc/article/aurelia/framework/latest/b
 We never used some of these, but for me, this is the reason why it doesn´t matter, or why it´s not a downside that it is not backed by some big player like Google or Facebook.
 
 
-<h3>Risk and lifetime</h3>
+<h2>Risk and lifetime</h2>
 
 I don´t see great risks when using Aurelia because it is really stable, a product of a company and fully open source.
 Because Aurelia is standard based you don´t have to be afraid that you take a lifelong decision or something like that. The framework code is so less and unobtrusive that you can easily remove it if you need to.
@@ -104,7 +104,7 @@ He might be the visionary but there is a whole company with a great team and he 
 In my opinion, this is surely an exciting development of circumstances but will not harm Aurelia in any way.
 
 
-<h3>Other experiences</h3>
+<h2>Other experiences</h2>
 
 Until now we hadn´t problems regarding the performance of Aurelia. But we haven´t measured or optimized it yet and just following good practices like to use the right binding modes (one-time, one-way, two-way).
 But if you believe the <a href="http://www.stefankrause.net/wp/?p=316" title="link to a JS framework benchmark">benchmarks</a>, Aurelia scores very well and they are continuously working on performance improvements. 
@@ -122,7 +122,7 @@ The <a href="https://github.com/aurelia/testing" title="">aurelia-testing</a> li
 and End2End testing with Protractor is also not a big deal. This setup works for us and we didn´t tried to combine other testing libraries.
 
 
-<h3>No resolutions for 2017 yet?</h3>
+<h2>No resolutions for 2017 yet?</h2>
 
 As you can see we are quite happy with Aurelia and there are many good reasons why you should give it a try. If you would like to read some more about it, I can recommend this <a href="http://ilikekillnerds.com/2016/12/give-aurelia-chance-2017/">post</a>. 
 Aurelia has <a href="http://blog.aurelia.io/2017/01/02/aurelia-2017-resolutions/">great plans</a> for the future and I am convinced that it´s usage and prominence in the JavaScript world will continuously grow. 

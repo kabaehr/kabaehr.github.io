@@ -129,4 +129,4 @@ loadItems() {
 The <code>.call</code> binding is somehow underestimated, at least it is not much <a href="http://aurelia.io/hub.html#/doc/article/aurelia/framework/latest/cheat-sheet/5">documented</a>, and the most examples you can find about it are only at Stack Overflow. If you want to react in your view model on something that happens inside your component, 
 this can be a much better solution then sending events around or setting up a shared service.
 
-You can find the <code>checkbox-</code> and the <code>scroll-end-</code> component as well as a one more simple example on <a href="https://gist.run/?id=999099938fc540ff93cdbe73760b91fb">this GistRun</a>.
+You can find the <code>checkbox-</code> and the <code>scroll-end-</code> component as well as a one more simple example on <a href="https://gist.run/?id=a556aec0c3c4aee1545b80ed9ffc7d3e">this GistRun</a>.

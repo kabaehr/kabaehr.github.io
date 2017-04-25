@@ -8,7 +8,7 @@ tags: [Aurelia]
 
 
 <span class="dropcap">G</span>raphQL is a very trending topic at the moment. Next to Facebook who developed GraphQL, also <a href="https://githubengineering.com/the-github-graphql-api/
-" title="link to announcement"> Github announced</a> to change their API´s from REST to GraphQL. This adoption indicates, that the topic might be important in the future. So I decided to take a deeper look at the whole topic. 
+" title="link to announcement"> Github announced</a> to change their API´s from REST to GraphQL. This adoption might convince more and more companies to trust in GraphQL for building their API´s. A good time to take a deeper look at the whole topic. 
 
 I played a bit with GraphQL and wanted to deploy it somewhere so I can consume my API from a demo application. I already deployed some REST API´s to Azure, therefore I wanted to publish my GraphQL API in the same manner. This post is a summarization of my attempts and the explanation how you can create a simple GraphQL API and deploy it to Azure like i did. 
 

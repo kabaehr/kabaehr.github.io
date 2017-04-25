@@ -154,7 +154,7 @@ Open the *.PublishSettings* file and connect to your app service with an FTP cli
 For deploying your code, you have to copy your server file and the whole *node_packages* folder. If you named your server file other than <code>server.js</code> you have to change the *web.config* accordingly.
 This files lays in the root directory and defines how your server will be executed.
 
-Now you can try to access your API over <em>http://\<your-app-name\>.azurewebsites.net/graphql</em> (in my case, <em>http://graphql-test-app.azurewebsites.net/graphql</em>) and see if it works.
+Now you can try to access your API over <em>http://\<your-app-name\>.azurewebsites.net/graphql</em> (in this example, <em>http://graphql-test-app.azurewebsites.net/graphql</em>) and see if it works.
 
 If you do so you will likely see some error page that tells you exactly nothing helpful.
 

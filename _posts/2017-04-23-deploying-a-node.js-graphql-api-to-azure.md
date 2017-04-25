@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploying a Node.js GraphQL API to Azure"
+subtitle: "Publish your GraphQL API simple and for *free*"
 date: 2017-04-23
 author:     "Katharina Bähr"
 tags: [Aurelia]

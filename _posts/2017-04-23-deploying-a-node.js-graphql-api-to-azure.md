@@ -27,7 +27,7 @@ npm install graphql express express-graphql
 {% endhighlight %} 
 
 Because we are writing ES6 code we need a transpiler to convert our files to ES5 JavaScript.
-Instead of Babel I used TypeScript for this. On the server the TypeScript typings system provides not that much benefit (in fact in this simple example it is not even used) because GraphQL comes with its own type system. But in case you are using TypeScript for the client you are able to <a href="https://github.com/dotansimha/graphql-code-generator" title="generate d.ts files from graphQL">generate typing definitions files</a> out of the GraphQL types. This is really handy because you don´t need to write all the <code>d.ts</code> files yourself.
+Instead of Babel I used TypeScript for this. On the server the TypeScript typing system provides not that much benefit (in fact in this simple example it is not even used) because GraphQL comes with its own type system. But in case you are using TypeScript for the client you are able to <a href="https://github.com/dotansimha/graphql-code-generator" title="generate d.ts files from graphQL">generate typing definitions files</a> out of the GraphQL types. This is really handy because you don´t need to write all the <code>d.ts</code> files yourself.
 
 Install TypeScript on your system and download all needed typings.
 

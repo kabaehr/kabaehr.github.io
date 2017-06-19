@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploying a Node.js GraphQL API to Azure"
+subtitle: "Publish your GraphQL API simple and for *free*"
 date: 2017-04-23
 author:     "Katharina Bähr"
 tags: [Aurelia]
@@ -8,7 +9,7 @@ tags: [Aurelia]
 
 
 <span class="dropcap">G</span>raphQL is a very trending topic at the moment. Next to Facebook who developed GraphQL, also <a href="https://githubengineering.com/the-github-graphql-api/
-" title="link to announcement"> Github announced</a> to change their API´s from REST to GraphQL. This adoption indicates, that the topic might be important in the future. So I decided to take a deeper look at the whole topic. 
+" title="link to announcement"> Github announced</a> to change their API´s from REST to GraphQL. This adoption might convince more and more companies to trust in GraphQL for building their API´s. A good time to take a deeper look at the whole topic. 
 
 I played a bit with GraphQL and wanted to deploy it somewhere so I can consume my API from a demo application. I already deployed some REST API´s to Azure, therefore I wanted to publish my GraphQL API in the same manner. This post is a summarization of my attempts and the explanation how you can create a simple GraphQL API and deploy it to Azure like i did. 
 
@@ -27,7 +28,7 @@ npm install graphql express express-graphql
 {% endhighlight %} 
 
 Because we are writing ES6 code we need a transpiler to convert our files to ES5 JavaScript.
-Instead of Babel I used TypeScript for this. On the server TypeScript adds not that many benefit because GraphQL comes with its own type system. But in case you are using TypeScript for the client you are able to <a href="https://github.com/dotansimha/graphql-code-generator" title="generate d.ts files from graphQL">generate typing definitions files</a> out of the GraphQL types. This is really handy because you don´t need to write all the <code>d.ts</code> files yourself.
+Instead of Babel I used TypeScript for this. On the server the TypeScript type system provides not that much benefit (in fact in this simple example it is not even used) because GraphQL comes with its own type system. But in case you are using TypeScript for the client you are able to <a href="https://github.com/dotansimha/graphql-code-generator" title="generate d.ts files from graphQL">generate typing definitions files</a> out of the GraphQL types. This is really handy because you don´t need to write all the <code>d.ts</code> files yourself.
 
 Install TypeScript on your system and download all needed typings.
 
@@ -153,7 +154,7 @@ Open the *.PublishSettings* file and connect to your app service with an FTP cli
 For deploying your code, you have to copy your server file and the whole *node_packages* folder. If you named your server file other than <code>server.js</code> you have to change the *web.config* accordingly.
 This files lays in the root directory and defines how your server will be executed.
 
-Now you can try to access your API over <em>http://\<your-app-name\>.azurewebsites.net/graphql</em> (in my case, <em>http://graphql-test-app.azurewebsites.net/graphql</em>) and see if it works.
+Now you can try to access your API over <em>http://\<your-app-name\>.azurewebsites.net/graphql</em> (in this example, <em>http://graphql-test-app.azurewebsites.net/graphql</em>) and see if it works.
 
 If you do so you will likely see some error page that tells you exactly nothing helpful.
 

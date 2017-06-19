@@ -6,7 +6,7 @@ author:  "Katharina Bähr"
 ---
 
 
-<span class="dropcap">E</span>nd of May I attended the Anglebracktes/DevIntersection conference in Orlando. It was my first big conference and my first time in the US.
+<span class="dropcap">E</span>nd of May I attended the Anglebracktes/DevIntersection conference in Orlando. It was my first big conference and my first time in the US. 
 This was quite an experience in several ways but it was not the technical stuff that impressed me the most.
 I had only one to two "good" talks a day. Where I learned a lot and the content was exactly on my knowledge level.
 More impressive was the spirit at the conference, the unity and seeing (famous) speakers. Speakers who are giving a lot of talks all around the world. 

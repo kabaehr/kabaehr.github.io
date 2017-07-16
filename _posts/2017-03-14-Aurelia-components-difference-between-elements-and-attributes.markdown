@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Aurelia components: difference between element and attribute"
+title: "Aurelia Components: Difference Between Element and Attribute"
 subtitle: "Custom elements and custom attributes are two different concepts and the distinction is not always clear"
 date: 2017-03-14
 author:     "Katharina Bähr"

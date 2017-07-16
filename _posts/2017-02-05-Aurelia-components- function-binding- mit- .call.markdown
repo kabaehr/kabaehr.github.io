@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Aurelia components: function binding with .call"
+title: "Aurelia Components: Function Binding with .call"
 subtitle: "Examples of the .call binding in Aurelia"
 date: 2017-02-05
 author:     "Katharina Bähr"

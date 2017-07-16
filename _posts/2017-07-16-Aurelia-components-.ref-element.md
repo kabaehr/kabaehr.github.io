@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Aurelia Components: The .ref Binding Command"
-date: 2017-06-05
+date: 2017-07-16
 author:  "Katharina Bähr"
 ---
 

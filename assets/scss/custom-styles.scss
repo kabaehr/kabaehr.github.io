@@ -21,6 +21,10 @@ body {
         }
     }
 
+    code {
+        font-size: 15px;
+    }
+
     .post {
         a:hover {
             color: $highlight-color;

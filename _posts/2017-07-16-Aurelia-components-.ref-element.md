@@ -6,8 +6,7 @@ author:  "Katharina Bähr"
 ---
 
 
-<span class="dropcap">T</span>he <code>.ref</code> binding is a quite undervalued feature that can help you with several problems in a clean and nice way.
-Using .ref can reduce the complexity of your application, save bundle size and performance. I want to show you some examples and how to use it.
+<span class="dropcap">T</span>he <code>.ref</code> binding is a quite undervalued feature that can help you with several problems in a clean and nice way. Using .ref can reduce the complexity of your application, save bundle size and performance. I want to show you some examples and how to use it.
 
 <h2>What is .ref</h2>
 

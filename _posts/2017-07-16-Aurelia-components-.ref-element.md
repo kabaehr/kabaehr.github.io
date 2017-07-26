@@ -162,7 +162,7 @@ export class App {
 
 <a href="http://aurelia.io/hub.html#/doc/article/aurelia/binding/latest/binding-how-it-works/1">See the official docs for more explanations about the controller.</a>
 
-<h2> .ref all the things </h2>
+<h2> Summary </h2>
 
 Some of the examples are really made up because I couldn´t think of a short real world example and the focus lays on showing the syntax and how to access the references in your outer view model. <br>
-To summarize you should use .ref to select and change the look or behavior of an element/attribute when you can´t customize the element/attribute over bindables.
+To summarize you should think about using .ref to select and change the look or behavior of an element/attribute when you can´t customize the element/attribute over bindables.

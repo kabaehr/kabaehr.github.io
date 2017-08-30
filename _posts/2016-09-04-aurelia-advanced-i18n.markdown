@@ -12,11 +12,11 @@ author: "Katharina Bähr"
 <p class="intro">
     <span class="dropcap">R</span>ecently I had to implement i18n in order to support several languages and users all around the world.
     I used the official <a href="https://github.com/aurelia/i18n" title="link to aurelia-i18n project">aurelia-18n</a> library and had some difficulties make
-    everything work in Safari (Cordova iOS App) and with Typescript. This post will may cover and extend some steps that are already described on the 
+    everything work in Safari (Cordova iOS App) and with Typescript. This post will cover and extend some steps that are already described in the 
     <a href="https://github.com/aurelia/i18n/blob/master/README.md" title="link to aurelia-i18n project readme">README.md</a> page of the Github repo.
 
 <p>
-I used the beta version of the library but shortly afterwards <a href="http://blog.durandal.io/2016/07/27/aurelia-1-0-is-here/" title="link to aurelia 1.0 version">Aurelia 1.0</a> were released and I updated to aurelia-i18n 1.0 version without any issues.
+I used the beta version of the library but shortly afterward <a href="http://blog.durandal.io/2016/07/27/aurelia-1-0-is-here/" title="link to aurelia 1.0 version">Aurelia 1.0</a> was released and I updated to aurelia-i18n 1.0 version without any issues.
 
 </p>
 
@@ -74,7 +74,7 @@ you have to pass the wanted locale.
 ${ myDate | df : undefined : selectedLocale} 
 {% endhighlight %}
 
-I didn´t wanted to pass the current selected locale to every view or make it global so I created a wrapper around the <em>nf</em> and <em>df</em> value converters.
+I didn´t want to pass the currently selected locale to every view or make it global so I created a wrapper around the <em>nf</em> and <em>df</em> value converters.
 These wrapper value converters always requesting the current locale first so you don´t have to provide this value in every view or make it global.
 
 {% highlight javascript %}
@@ -165,7 +165,7 @@ let options = [ {'key': 'de', 'label': 'Germany'}, {'key': 'en', 'label': 'Engli
 
 <h2>Safari und Intl</h2>
 <p>
-<em>aurelia-i18n</em> uses <a href="" title="link to i18next">i18next</a> a widely known internationalization library which depends on the <em>window.Intl</em> API. Unfortunately the 
+<em>aurelia-i18n</em> uses <a href="" title="link to i18next">i18next</a> a widely known internationalization library which depends on the <em>window.Intl</em> API. Unfortunately, the 
 <a href="http://caniuse.com/#search=intl" title="support of intl"> browser support </a> for this API is limited.
 Thus for supporting Safari and some mobile browsers you have to install the polyfill <a href="https://github.com/andyearnshaw/Intl.js/" title="link to intl polyfill">intl.js</a>
 
@@ -190,7 +190,7 @@ import 'intl'; //in main.ts or like me in some own translation service
 
 <p>
 But that fixed not all of my problems and it caused me some headache to figure out how to solve them. I discovered that you have to include a JSON file for every locale you are supporting in order to use <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">numberformat</a> and <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">dateformat</a>.
-So I created a file where I included all needed locales and imported this file in my project. Next to that you could use this file for determining supported languages for the <i>language-switch</i>.
+So I created a file where I included all needed locales and imported this file in my project. Next to that, you could use this file for determining supported languages for the <i>language-switch</i>.
 </p>
 
 {% highlight html %}
@@ -222,7 +222,7 @@ export class MyComponent {
 {% endhighlight %} 
 
 <p>
-and given this unit test you can include the binding behaviour with 
+and given this unit test, you can include the binding behavior with 
 </p>
 
 {% highlight javascript %}
@@ -263,6 +263,6 @@ describe('MyComponent', () => {
 {% endhighlight %} 
 
 <p>
-Hopefully this will help someone using aurelia-i18n or struggling with Safari support.
+Hopefully, this will help someone using aurelia-i18n or when struggling with Safari support.
 Feel free to write me an Email or create a pull request if I missed something.
 </p>

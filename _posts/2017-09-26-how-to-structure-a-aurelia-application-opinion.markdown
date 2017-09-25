@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Aurelia Application Structure for Bigger Projects"
-date: 2017-09-16
+date: 2017-09-25
 author:  "Katharina Bähr"
 ---
 

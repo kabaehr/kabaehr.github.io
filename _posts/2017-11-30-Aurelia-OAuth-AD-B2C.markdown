@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Securing an Aurelia application with Azure B2C
-date: 2017-09-30
+date: 2017-11-30
 author:  "Katharina Bähr"
 ---
 

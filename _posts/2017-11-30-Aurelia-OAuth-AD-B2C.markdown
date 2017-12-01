@@ -49,7 +49,9 @@ For this, we can apply a HttpInterceptor to our HttpClient (or FetchClient) whic
 
 In our first implementation, we used <a href="https://github.com/matik12/aurelia-oauth">aurelia-oauth</a> because it was fitting our requirements better than aurelia-auth(entication) and it seemed like everything we needed.
 
-Now, we looked at all kind of client libraries and tried to find something that is stable, maintained and is quite accepted in the community. Because the general login process is not aurelia specific and our users are not allowed to see anything from the application before they are logged in we wanted to trigger the login before we load a lot of Aurelia libs.
+Now, we looked at all kind of client libraries and tried to find something that is stable, maintained and is quite accepted in the community. 
+
+Because the general login process is not aurelia specific and our users are not allowed to see anything from the application before they are logged in we wanted to trigger the login before we load a lot of Aurelia libs.
 
 <h3>aurelia-oauth</h3>
 When <a href="https://github.com/matik12/aurelia-oauth">aurelia-oauth</a> stopped working I looked deeper into the code and discovered that the plugin is badly maintained and not very well written.
@@ -93,7 +95,7 @@ It has support for a newer feature like Azure B2C and is well maintained. It's p
 
 <h2>Implement AD B2C Authentication</h2>
 
-I don't want to reinvent the wheel here. There is a quite current and comprehensive <a href="https://chrisdennig.me/2017/09/06/secure-an-aurelia-single-page-app-with-azure-active-directory-b2c-msal/">blog post</a>, that describes a lot of the needed steps and gives a good impression on how to secure your application and even how you have to configure Azure.
+I don't want to reinvent the wheel here. There is a quite current and comprehensive <a href="https://chrisdennig.me/2017/09/06/secure-an-aurelia-single-page-app-with-azure-active-directory-b2c-msal/">blog post</a>, that describes a lot of the needed steps and gives a good impression on how to secure your application with msal.js and even how you have to configure Azure.
  
 
 Since there was an update to the msal library you should be able to download it normally via <code>npm install</code> (or jspm) so the most bugs mentioned in the post, should be solved.

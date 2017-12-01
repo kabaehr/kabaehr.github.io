@@ -63,8 +63,8 @@ However, this plugin is not working out of the box with Azure AD B2C. We had to 
 
 There are two packages <a href="https://github.com/paulvanbladel/aurelia-auth">aurelia-auth</a> and <a href="https://github.com/SpoonX/aurelia-authentication">aurelia-authentication</a>. The latter is a fork of the first and is maintained by a company that open-sourced several of their Aurelia plugins and brings some additional features. The original is a port of <a href="https://github.com/sahat/satellizer/">Sattelizer</a> a Angular library for Authentication.
 
-Both plugins are showing the login dialog in a popup window. This way they don´t have to route away from the page and reload it after the user logged in. 
-This popup is the main reason, why I didn´t choose it. I can imagine that this is a good choice for a lot of other projects.
+Both plugins are showing the login dialog in a popup window. This way they don't have to route away from the page and reload it after the user logged in. 
+This popup is the main reason, why I didn't choose it. I can imagine that this is a good choice for a lot of other projects.
 
 <h3>aurelia-open-id-connect</h3>
 The <a href="https://github.com/shaunluttin/aurelia-open-id-connect">aurelia-open-id-connect</a> plugin makes a good first expression and is a wrapper for the <a href="https://github.com/shaunluttin/aurelia-open-id-connect">IdentityModel/oidc-client-js</a>.
@@ -79,7 +79,7 @@ Depending on the project requirements this might be a good choice.
 <h3>hello.js</h3>
 In this <a href="https://medium.com/@mikko.vuorinen/aurelia-and-azure-ad-b2c-authentication-351fbe2de348">blog post</a>, a plugin called <a href="https://adodson.com/hello.js/">hello.js</a> is used in combination with Aurelia. 
 
-The purpose of this plugin is not only OAuth authentication but rather querying all kind of APIs like from Instagram, Twitter or Facebook. We don´t need this services, therefore this library could be too much.
+The purpose of this plugin is not only OAuth authentication but rather querying all kind of APIs like from Instagram, Twitter or Facebook. We don't need this services, therefore this library could be too much.
 
 
 <h3>Auth0</h3>

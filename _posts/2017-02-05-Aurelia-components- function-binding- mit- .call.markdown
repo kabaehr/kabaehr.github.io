@@ -33,6 +33,13 @@ The <code>.call</code> binding command can be bind to custom elements or used wi
 It is possible to write the custom attribute in a more readable fashion, at least for one <em>primary</em> bindable.
 May take a look <a href="http://blog.aurelia.io/2017/01/12/new-aurelia-features-and-release-notes-1-12-2017/">here at the Aurelia Blog.</a>
 
+<h2>.call with parameters</h2>
+
+If we want to pass method parameters to our .call function we have to use a special syntax. 
+
+Asmuming we bind a function `add(x, y)` to our view with `<custom-element add-method.call="add(x, y)"></custom-element>`
+we have to call it inside of our *custom-element* with `addMethod({x: 42, y: 17})` and create an object with our parameters as key value pairs.
+
 
 <h2>Examples</h2>
 

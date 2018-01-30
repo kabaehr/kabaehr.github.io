@@ -39,7 +39,7 @@ The keyup binding is different than the keydown and keypress event because the k
 But why don't we see the typed keys in the input field for the two other events? The thing we didn't know and that caused a lot of confusion was that
 Aurelia calls <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault"><code>event.preventDefault()</code></a> by itself in every event handler method.
 
-<img src="{{ '/assets/img/keyboard_event_binding.jpg' | prepend: site.baseurl }}" alt="Aurelia documentation regarding DOM Events"/>
+<img src="{{ '/assets/img/keyboard_event_binding.JPG' | prepend: site.baseurl }}" alt="Aurelia documentation regarding DOM Events"/>
 
 So in order to check the typed key and allow them (or just some typed keys) to appear in the input field you have to <code>return true</code>;
 

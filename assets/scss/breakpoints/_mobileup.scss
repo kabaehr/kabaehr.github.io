@@ -176,7 +176,7 @@ HEADER STYLING
 
 .header {
 	background-color: $background-color;
-	background-image: url('../img/bar_small.png');
+	background-image: url('../img/ski.png');
 	background-size: cover;
 	background-position: center center;
 	color: white;
@@ -213,9 +213,9 @@ POST STYLING
 .post {
 
 	.postTitle {
-		text-align: center;
+		//text-align: center;
 		margin-top: 2rem;
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
 	}
 
 	blockquote {

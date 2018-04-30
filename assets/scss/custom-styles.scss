@@ -11,11 +11,11 @@
 }
 
 body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
     a {
         &.post-link{
             &:hover {
-                color: $highlight-color;
+                color: #63E2DD;
                 text-decoration: none;
             }
         }
@@ -27,12 +27,12 @@ body {
 
     .post {
         a:hover {
-            color: $highlight-color;
+            color: #63E2DD;
         }
     }
 
     h1.postTitle {
-        color: $primary-color !important;
+        color: #0E8B87 !important;
     }
 
     twitterwidget {

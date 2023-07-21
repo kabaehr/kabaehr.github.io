@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watch:eleventy": "npx @11ty/eleventy --serve",
-	  "watch:sass": "npx sass ./assets/scss:_site/assets/css --watch",
-	  "start": "npm run watch:eleventy & npm run watch:sass",
+    "watch:sass": "npx sass ./assets/scss:_site/assets/css --watch",
+    "start": "npm run watch:eleventy & npm run watch:sass",
     "build": "npx @11ty/eleventy & npx sass ./assets/scss:_site/assets/css"
   },
   "repository": {

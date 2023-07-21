@@ -1,0 +1,24 @@
+// Site configuration
+@import "config"; 
+
+@import "partials/mixins";
+
+// Modules
+@import "modules/buttons";
+@import "modules/syntax"; 
+
+// Import Partials
+@import "partials/typography";
+
+@import "partials/grid";
+
+// Mobile up base styles
+
+@import "breakpoints/mobileup";
+
+@import "custom-styles";
+
+// Import media queries add more as you desire
+@media only screen and (min-width: 800px) { @import "breakpoints/800up";} 
+
+// If IE support is needed you can add them here or create another stylesheet for specific IE fixes

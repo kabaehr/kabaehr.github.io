@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@kabaehr">
+    
+      <meta name="twitter:title" content="Web dev and more">
+    
+    
+      <meta name="twitter:url" content="http://kabaehr.github.io//Aurelia-and-cordova/">
+    
+    
+      <meta name="twitter:description" content="Blog where I share my programming and web development experiences">
+    
+    
+      <meta name="twitter:image:src" content="http://kabaehr.github.io//path/to/image/logo.png">
+    
+    
+    <title>Experiences from my Project with Aurelia and Cordova</title>
+    <title>Web dev and more</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Web dev and more" href="http://kabaehr.github.io//feed.xml" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="http://kabaehr.github.io//Aurelia-and-cordova/">
+
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+
+  
+</head>
+
+
+<body>
+
+   <div class="header">
+    <div class="container">
+        <h1 class="logo">
+            <a href="/">Web dev and more</a>
+        </h1>
+        <nav class="nav-collapse">
+            <ul class="noList">
+                
+                
+                <li class="element first  ">
+                    <a href="/index.html">Home</a>
+                </li>
+                
+                <li class="element   ">
+                    <a href="/about">About</a>
+                </li>
+                
+                <li class="element   last">
+                    <a href="/impressum">Impressum</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <div class="post">
+  
+  <h1 class="postTitle">Experiences from my Project with Aurelia and Cordova</h1>
+  <p class="meta">March 25, 2018 
+  </p> 
+  
+  <p><span class="dropcap">I</span>n my current project, we build a hybrid app with <a href="https://aurelia.io/">Aurelia</a> and <a href="https://cordova.apache.org/">Cordova</a>. I thought multiple times about writing a post about this combination but I wasn't quite sure what to write because there are no special things to do in order to get Aurelia running with Cordova. But now I have realized, that I don't have to write a post on how to combine Aurelia and Cordova in general and that I will just write about my experience.</p>
+<h2>First steps</h2>
+<p>
+Including Cordova into your Aurelia app is quite simple. At first, you need to download Cordova and install the needed Cordova platforms you want to  develop for. You can do this with:
+</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> cordova <span class="token parameter variable">-g</span></code></pre>
+<p>There are multiple possibilities to set up your Aurelia-Cordova project, one way could be to create your Aurelia project inside the <code>cordova/www</code> folder (recommended if you only need to support app platforms like Android and iOS) or you can create the Cordova project inside of your Aurelia project (if you also want to run your application in the browser like a common Aurelia project) and copy the sources through some build tool. The latter one is the way how we developed our application.</p>
+<p>For the latter approach create a folder named <em>cordova</em> (or however you want) and create a Cordova project by running</p>
+<pre class="language-bash"><code class="language-bash">cordova create <span class="token builtin class-name">.</span> <span class="token punctuation">[</span>id <span class="token punctuation">[</span>name <span class="token punctuation">[</span>config<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> </code></pre>
+<p>See documentation below for the optional parameters.</p>
+<p>If the project is created you can now add the needed platforms with:</p>
+<pre class="language-bash"><code class="language-bash">cordova platform <span class="token function">add</span> <span class="token operator">&lt;</span>android/ios<span class="token operator">></span></code></pre>
+<p>For more details on how to install, create and run a Cordova project see the <a href="https://cordova.apache.org/docs/en/latest/guide/cli/">documentation</a>.</p>
+<p>If you want to go with the first approach you can use the Cordova CLI and create a project via <code>cordova create</code> or you can check out some more resources from the community:</p>
+<ul>
+<li><a href="https://github.com/fragsalat/cordova-aurelia-skeleton">Aurelia Cordova skeleton</a></li>
+<li><a href="https://wipdeveloper.com/cordova-with-aureli-cli/">Aurelia CLI and Cordova</a></li>
+<li><a href="https://github.com/arjendeblok/aurelia-cordova-skeleton">Aurelia Cordova skeleton with Webpack</a></li>
+</ul>
+<h2>Tooling with Gulp</h2>
+<p>The sources Cordova is packaging into an app, need to lay inside the <code>cordova/wwww</code> folder. To get them there we changed our gulp build tasks.</p>
+<p>We created some tasks that copy either our <code>debug</code> or the <code>release</code> sources into the <code>www</code> folder.</p>
+<pre class="language-js"><code class="language-js">
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'cordova-copy-files'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'export'</span><span class="token punctuation">,</span> <span class="token string">'clean-cordova'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span>paths<span class="token punctuation">.</span>exportSrv <span class="token operator">+</span> <span class="token string">"**/*"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">plumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span>paths<span class="token punctuation">.</span>cordovaSrc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'copy-debug-dist-files'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+		<span class="token string">'dist/**/*'</span><span class="token punctuation">,</span>
+		<span class="token string">'jspm_packages/**/*'</span><span class="token punctuation">,</span>
+		<span class="token string">'config.js'</span><span class="token punctuation">,</span>
+		<span class="token string">'*.html'</span><span class="token punctuation">,</span>
+		<span class="token string">'src/mobile/favicon-ico'</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">'.'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">plumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span>paths<span class="token punctuation">.</span>cordovaSrc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Another build step that is necessary, is to include <code>cordova.js</code> in the body in the <code>index.html</code>.
+We do this via gulp because we only want to do it, when we build the app for Cordova, so we can still use it on the desktop.</p>
+<pre class="language-bash"><code class="language-bash">
+gulp.task<span class="token punctuation">(</span><span class="token string">'cordova-inject-body'</span>, <span class="token function-name function">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token builtin class-name">return</span> gulp.src<span class="token punctuation">(</span>paths.cordovaSrc + paths.index<span class="token punctuation">)</span>
+		.pipe<span class="token punctuation">(</span>injectString.after<span class="token punctuation">(</span><span class="token string">'&lt;body aurelia-app="main">'</span>, <span class="token string">'&lt;script src="cordova.js">&lt;/script>'</span><span class="token punctuation">))</span>
+		.pipe<span class="token punctuation">(</span>gulp.dest<span class="token punctuation">(</span>paths.cordovaSrc<span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In general it was quite easy to adjust our gulp build tasks for Cordova.</p>
+<p>It's a bit overhead to copy all needed sources
+everytime we want to build an app, but this is necessary because we also want to be able to build the Aurelia project normally.
+To reduce this overhead a bit we also wrote some <em>fast</em> builds, which only copy <code>html</code>, <code>js</code> and <code>css</code> files.</p>
+<h2>Platform specifics and plugins</h2>
+<p>
+We use several Cordova plugins but the two with the deepest platform-specific integration is the <a href="https://github.com/randdusing/cordova-plugin-bluetoothle">bluetoothle-plugin</a> and the <a href="https://github.com/apache/cordova-plugin-file">file-system-plugin</a>.
+<p>With these we are able to download and store files and to establish a Bluetooth connection and read data from other Bluetooth devices.</p>
+<p>This works out quite okay but since these are extra layers which try to unify the existing platform-specific implementations and flaws, you can't expect too much. You will have to read carefully through the documentation and write some platform-specific code.</p>
+<p>For this you will have to check for the specific platform with:</p>
+</p>
+<pre class="language-js"><code class="language-js">
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>cordova <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>cordova<span class="token punctuation">.</span>platformId <span class="token operator">===</span> <span class="token string">'android'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">//platform specific code here</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+<p>Also, you can't expect that everything that is possible on a native platform is also possible via cordova and that there is an existing stable plugin. But you can write own plugins.</p>
+<p>In order to integrate a C++ library that is doing some customer specific work, we created a wrapper as an own cordova plugin for the platforms android and iOS. In such a plugin you need to write some Cordova glue code and can implement the needed functionality in a corresponding native language (Objective C, Java, Swift...) and use the native platform libraries.</p>
+<h2>Good idea?</h2>
+<p>Since you have extra layers between the native API´s, write a Web UI instead of a native one and translate between ecosystems you have to consider that hyrid apps usally come with some lack of performance and UX.</p>
+<p>I like to say that Cordova is not fun but mighty. It hardly depends on what you want to achieve and what your requirements are.
+In our case the application is a business application. Our users will have to use this application for their daily work and therefore the customer wanted
+that the application looks on all platforms (desktop, android, iOS) the same so their employees don't need to accustom to different GUI´s. This is a no go for B2C application but for this special use case it was out of question and the tradeoffs of worse usability and performance were therefore approved.</p>
+<p>If at the end Cordova was a good choice is hard to say, but using Aurelia with it definitely was.</p>
+
+
+  <p class="contact-me-box">
+  Found some typo, want to give feedback or discuss? Feel free to contact me :)
+  </p>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+      
+     
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy;  Katharina Bähr | Theme by <a href="https://github.com/brianmaierjr/long-haul" target="_blank" alt="link to brianmaierjr on github">brianmaierjr </a></p>
+      <div class="footer-links"> 
+         <ul class="noList"> 
+           
+            
+            <li><a href="https://twitter.com/">
+                  <svg id="twitter" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="https://github.com/">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+             
+            
+            <li><a href="mailto:">
+                  <svg id="mail" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"></path>
+                  </svg>
+            </a></li>
+            
+         </ul>
+      </div>
+   </div>
+</div><!-- end .footer -->
+
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="\{\{ \'/assets/js/jquery-1.11.2.min.js\' | prepend: site.baseurl \}\}"><\/script>')</script>
+<script src="/assets/js/dropcap.min.js"></script>
+<script src="/assets/js/responsive-nav.min.js"></script>
+<script src="/assets/js/scripts.js"></script>
+
+
+</body>
+
+</html>

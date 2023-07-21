@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@kabaehr">
+    
+      <meta name="twitter:title" content="Web dev and more">
+    
+    
+      <meta name="twitter:url" content="http://kabaehr.github.io//deploying-a-node.js-graphql-api-to-azure/">
+    
+    
+      <meta name="twitter:description" content="Blog where I share my programming and web development experiences">
+    
+    
+      <meta name="twitter:image:src" content="http://kabaehr.github.io//path/to/image/logo.png">
+    
+    
+    <title>Deploying a Node.js GraphQL API to Azure</title>
+    <title>Web dev and more</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Web dev and more" href="http://kabaehr.github.io//feed.xml" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="http://kabaehr.github.io//deploying-a-node.js-graphql-api-to-azure/">
+
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+
+  
+</head>
+
+
+<body>
+
+   <div class="header">
+    <div class="container">
+        <h1 class="logo">
+            <a href="/">Web dev and more</a>
+        </h1>
+        <nav class="nav-collapse">
+            <ul class="noList">
+                
+                
+                <li class="element first  ">
+                    <a href="/index.html">Home</a>
+                </li>
+                
+                <li class="element   ">
+                    <a href="/about">About</a>
+                </li>
+                
+                <li class="element   last">
+                    <a href="/impressum">Impressum</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <div class="post">
+  
+  <h1 class="postTitle">Deploying a Node.js GraphQL API to Azure</h1>
+  <p class="meta">April 23, 2017 
+  </p> 
+  
+  <p><span class="dropcap">G</span>raphQL is a very trending topic at the moment. Next to Facebook who developed GraphQL, also <a href="https://githubengineering.com/the-github-graphql-api/
+" title="link to announcement"> Github announced</a> to change their API´s from REST to GraphQL. This adoption might convince more and more companies to trust in GraphQL for building their API´s. A good time to take a deeper look at the whole topic.</p>
+<p>I played a bit with GraphQL and wanted to deploy it somewhere so I can consume my API from a demo application. I already deployed some REST API´s to Azure, therefore I wanted to publish my GraphQL API in the same manner. This post is a summarization of my attempts and the explanation how you can create a simple GraphQL API and deploy it to Azure like i did.</p>
+<p>One great thing on Azure (and surely also other cloud providers) is, that you don`t have to pay for small deployments and usage. Perfect for play projects :)
+In case you don´t have an Azure account yet, you can follow this <a href="https://www.youtube.com/watch?v=YHCAAnPIQyc" title="link to video for creating a azure subscription">video</a> for creating your subscription.</p>
+<p>I started learning GraphQL with the site <a href="https://learngraphql.com/" title="link to learngraphql">Learn GraphQL</a> and using the <a href="" title="link to offical docu">official documentation and can highly recommend them.</a> The shown example API is the same like on learngraphql.com.</p>
+<h2>Installing packages and TypeScript</h2>
+<p>I am using Node.js because it is very uncomplicated and lightweight. I installed the recommended packages like <code>express-graphql</code> from the <a href="http://graphql.org/code/" title="link to official docu with available libraries">GraphQL documentation</a>. Next, to that, you have to install <code>graphql</code> itself.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> graphql express express-graphql</code></pre>
+<p>Because we are writing ES6 code we need a transpiler to convert our files to ES5 JavaScript.
+Instead of Babel I used TypeScript for this. On the server the TypeScript type system provides not that much benefit (in fact in this simple example it is not even used) because GraphQL comes with its own type system. But in case you are using TypeScript for the client you are able to <a href="https://github.com/dotansimha/graphql-code-generator" title="generate d.ts files from graphQL">generate typing definitions files</a> out of the GraphQL types. This is really handy because you don´t need to write all the <code>d.ts</code> files yourself.</p>
+<p>Install TypeScript on your system and download all needed typings.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> typescript</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> typings</code></pre>
+<pre class="language-bash"><code class="language-bash">typings <span class="token function">install</span> express graphql <span class="token parameter variable">--save</span></code></pre>
+<h2>Creating the GraphQL API </h2>
+<p>After this, we can start with creating our <code> server.ts </code> file and import all needed resources for creating the web server and the API.</p>
+<pre class="language-js"><code class="language-js">
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> express <span class="token keyword">from</span> <span class="token string">'express'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> graphqlHTTP <span class="token keyword">from</span> <span class="token string">'express-graphql'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  <span class="token comment">// These are the basic GraphQL types</span>
+  GraphQLInt<span class="token punctuation">,</span>
+  GraphQLFloat<span class="token punctuation">,</span>
+  GraphQLString<span class="token punctuation">,</span>
+  GraphQLList<span class="token punctuation">,</span>
+  GraphQLObjectType<span class="token punctuation">,</span>
+  GraphQLEnumType<span class="token punctuation">,</span>
+  GraphQLNonNull<span class="token punctuation">,</span>
+  GraphQLSchema<span class="token punctuation">,</span>
+  graphql
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'graphql'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Next we create a simple GraphQL schema.</p>
+<pre class="language-js"><code class="language-js">
+<span class="token keyword">let</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GraphQLObjectType</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'RootQueries'</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">fields</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">echo</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> GraphQLString<span class="token punctuation">,</span>
+      <span class="token literal-property property">args</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token literal-property property">type</span><span class="token operator">:</span> GraphQLString<span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token parameter">rootValue<span class="token punctuation">,</span> args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">received: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>args<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token literal-property property">schema</span><span class="token operator">:</span> GraphQLSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GraphQLSchema</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">query</span><span class="token operator">:</span> query<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">graphql</span><span class="token punctuation">(</span>schema<span class="token punctuation">,</span> query<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">result</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The last thing we now have to do is setting up the express web server. This is quite simple, we just create the express application, define the endpoint,
+configure the schema and add a port to listen on.</p>
+<pre class="language-js"><code class="language-js">
+<span class="token keyword">var</span> <span class="token literal-property property">app</span><span class="token operator">:</span> express<span class="token punctuation">.</span>Application <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/graphql'</span><span class="token punctuation">,</span> <span class="token function">graphqlHTTP</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+ <span class="token literal-property property">schema</span><span class="token operator">:</span> schema<span class="token punctuation">,</span>
+ <span class="token literal-property property">graphiql</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">4001</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'express server works'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Well, wasn´t that easy? Now we can transpile and execute it with node.</p>
+<pre class="language-js"><code class="language-js">tsc server<span class="token punctuation">.</span>ts</code></pre>
+<pre class="language-js"><code class="language-js">node server<span class="token punctuation">.</span>js</code></pre>
+<p>The API is  now up and running under <strong>localhost:4001</strong>. Because of the option <code> graphiql: true</code> we see a
+nice interface where we can use autocompletion to execute queries.</p>
+<h2>Deployment to Azure</h2>
+<p>We are now going to publish this API and access it over Azure instead of localhost.
+For this, you need to create a Node.js application, download the <em>PublishProfile</em> and upload your files.</p>
+<p>There are several ways to work with Azure and this makes it sometimes hard to find the right documentation.
+I prefer using various GUI´s and never even tried to use the Azure Powershell. Therefore is what I am describing next only one of many ways to do this.</p>
+<h3> Create the Node.js application</h3>
+<p>First, you have to go to your Azure account and create a Node.js web application. You can orientate on the pictures below or you can have a look at this <a href="https://channel9.msdn.com/Blogs/Azure/Create-a-Web-App-with-Nodejs-and-Azure-App-Service" title="how to create app video from channel9">channel9 video</a> for a complete guide.</p>
+<figure>
+    <img src="/assets/img/azure_deploy.png" alt="Steps to create your Node.js Application"/>
+</figure>
+<p>When creating your app make sure that you choose the free pricing tier. After you created your app service you can navigate to it and download the publish profile.</p>
+<figure>
+    <img src="/assets/img/download_publish_profile.PNG" alt="Steps to create your Node.js Application"/>
+</figure>
+<p>Open the <em>.PublishSettings</em> file and connect to your app service with an FTP client.</p>
+<p>For deploying your code, you have to copy your server file and the whole <em>node_packages</em> folder. If you named your server file other than <code>server.js</code> you have to change the <em>web.config</em> accordingly.
+This files lays in the root directory and defines how your server will be executed.</p>
+<p>Now you can try to access your API over <em>http://&lt;your-app-name&gt;.azurewebsites.net/graphql</em> (in this example, <em>http://graphql-test-app.azurewebsites.net/graphql</em>) and see if it works.</p>
+<p>If you do so you will likely see some error page that tells you exactly nothing helpful.</p>
+<h3>Pitfalls</h3>
+It happened several times to me that I copied my files to Azure and it wasn´t working. In this case you can add multiple logging statements for <a href="https://docs.microsoft.com/en-us/azure/app-service-web/web-sites-nodejs-debug" title="link to azure debugging guide">debugging</a>
+in the <em>iisnode.yml</em> file to see some more detailed error messages.
+<pre class="language-js"><code class="language-js"><span class="token literal-property property">loggingEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token literal-property property">devErrorsEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span></code></pre>
+<p>In case you chose the <em>Node.js Starter Site</em> you can also take a look at the default application. Find out how the existing application is working and
+what you may did wrong. Otherwise, you can find some <a href="https://github.com/Azure-Samples/app-service-web-nodejs-get-started">example applications</a> on Github.</p>
+<p>Taking a look at this helped me to find out that I forgot to change the port to the one that Azure provides. So you need to change your code to use <code>process.env.port</code>.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> port <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>port <span class="token operator">||</span> <span class="token number">4001</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'express server works'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>You can find this information also somewhere in the <a href="https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-nodejs-develop-deploy-app" title="link to node.js azure docu">documentation</a>, but I only found the problem by looking at the initial <code>server.js</code> file.</p>
+<h3>Consume your API</h3>
+<p>The deployment to Azure was quite easy and you are now ready to extend and consume your API from a client.
+For further development of your API I would recommend integrating the <a href="https://docs.microsoft.com/en-us/azure/app-service-web/app-service-deploy-local-git">GIT deployment</a>.
+Thus, Azure gets the new files as soon as you push changes to your repository.</p>
+<p>Hopefully these explanations might help someone to get started with developing great API´s.
+I am excited to see how GraphQL will change the way we build applications, handle and consume data.</p>
+
+
+  <p class="contact-me-box">
+  Found some typo, want to give feedback or discuss? Feel free to contact me :)
+  </p>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+      
+     
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy;  Katharina Bähr | Theme by <a href="https://github.com/brianmaierjr/long-haul" target="_blank" alt="link to brianmaierjr on github">brianmaierjr </a></p>
+      <div class="footer-links"> 
+         <ul class="noList"> 
+           
+            
+            <li><a href="https://twitter.com/">
+                  <svg id="twitter" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="https://github.com/">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+             
+            
+            <li><a href="mailto:">
+                  <svg id="mail" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"></path>
+                  </svg>
+            </a></li>
+            
+         </ul>
+      </div>
+   </div>
+</div><!-- end .footer -->
+
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="\{\{ \'/assets/js/jquery-1.11.2.min.js\' | prepend: site.baseurl \}\}"><\/script>')</script>
+<script src="/assets/js/dropcap.min.js"></script>
+<script src="/assets/js/responsive-nav.min.js"></script>
+<script src="/assets/js/scripts.js"></script>
+
+
+</body>
+
+</html>

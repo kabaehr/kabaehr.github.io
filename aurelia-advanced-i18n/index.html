@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@kabaehr">
+    
+      <meta name="twitter:title" content="Web dev and more">
+    
+    
+      <meta name="twitter:url" content="http://kabaehr.github.io//aurelia-advanced-i18n/">
+    
+    
+      <meta name="twitter:description" content="Blog where I share my programming and web development experiences">
+    
+    
+      <meta name="twitter:image:src" content="http://kabaehr.github.io//path/to/image/logo.png">
+    
+    
+    <title>Aurelia advanced I18N</title>
+    <title>Web dev and more</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Web dev and more" href="http://kabaehr.github.io//feed.xml" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="http://kabaehr.github.io//aurelia-advanced-i18n/">
+
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+
+  
+</head>
+
+
+<body>
+
+   <div class="header">
+    <div class="container">
+        <h1 class="logo">
+            <a href="/">Web dev and more</a>
+        </h1>
+        <nav class="nav-collapse">
+            <ul class="noList">
+                
+                
+                <li class="element first  ">
+                    <a href="/index.html">Home</a>
+                </li>
+                
+                <li class="element   ">
+                    <a href="/about">About</a>
+                </li>
+                
+                <li class="element   last">
+                    <a href="/impressum">Impressum</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <div class="post">
+  
+  <h1 class="postTitle">Aurelia advanced I18N</h1>
+  <p class="meta">September 04, 2016 
+  </p> 
+  
+  <p class="intro">
+    <span class="dropcap">R</span>ecently I had to implement i18n in order to support several languages and users all around the world.
+    I used the official <a href="https://github.com/aurelia/i18n" title="link to aurelia-i18n project">aurelia-18n</a> library and had some difficulties make
+    everything work in Safari (Cordova iOS App) and with Typescript. This post will cover and extend some steps that are already described in the 
+    <a href="https://github.com/aurelia/i18n/blob/master/README.md" title="link to aurelia-i18n project readme">README.md</a> page of the Github repo.
+<p>
+I used the beta version of the library but shortly afterward <a href="http://blog.durandal.io/2016/07/27/aurelia-1-0-is-here/" title="link to aurelia 1.0 version">Aurelia 1.0</a> was released and I updated to aurelia-i18n 1.0 version without any issues.
+</p>
+<h2>Using aurelia-i18n with Typescript</h2>
+<p>
+Like on the <a href="https://github.com/aurelia/i18n" title="link to aurelia-i18n project">Github page</a> suggested you have to execute
+</p>
+<pre class="language-bash"><code class="language-bash">jspm <span class="token function">install</span> i18next
+jspm <span class="token function">install</span> i18next-xhr-backend </code></pre>
+<p>
+or some other backend service from this list of available <a href="http://i18next.com/docs/ecosystem/#backends" title="link to a list of i18n backends">backends</a>
+and install typings
+</p>
+<pre class="language-bash"><code class="language-bash">typings <span class="token function">install</span> i18next</code></pre>
+<p>
+Since <em>i18next-xhr-backend</em> comes with a d.ts file you can just add
+</p>
+<pre class="language-js"><code class="language-js"> <span class="token string-property property">"filesGlob"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"../jspm_packages/**/*.d.ts"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span></code></pre>
+<p>
+to your <em>tsconfig.js</em> and the gulp typescript task will find and use the <em>i18next-xhr-backend.d.ts</em> file.
+If you are up to date with your aurelia packages you shouldn´t get any "Duplicate identifier" error messages. If you have some issues with this you could change the <em>filesGlob</em> path
+to only match the specific file
+or follow the steps <a href="https://github.com/aurelia/i18n#how-to-install-this-plugin" title="link to aurelia-i18n documentation">described under point 8.ii</a>.
+</p>
+</p>
+<h2>Translation with ValueConverter</h2>
+<p>
+For converting numbers with the <a href="https://github.com/aurelia/i18n#formatting-numbers-with-nfvalueconverter" title="link to nfValueConverter"> number format value converter
+ </a> or converting dates with the <a href="https://github.com/aurelia/i18n#formatting-dates-with-dfvalueconverter" title="link to df value converter" > date format value converter</a>
+you have to pass the wanted locale.
+</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">//number format with 'en_US' as locale</span>
+ $<span class="token punctuation">{</span> <span class="token number">1234567.890</span> <span class="token operator">|</span> nf <span class="token operator">:</span> <span class="token keyword">undefined</span> <span class="token operator">:</span> <span class="token string">'en_US'</span><span class="token punctuation">}</span> <span class="token comment">//undefined is the value for the options parameter </span>
+
+<span class="token comment">//date format with a locale string bound to selectedLocale</span>
+$<span class="token punctuation">{</span> myDate <span class="token operator">|</span> df <span class="token operator">:</span> <span class="token keyword">undefined</span> <span class="token operator">:</span> selectedLocale<span class="token punctuation">}</span> </code></pre>
+<p>I didn´t want to pass the currently selected locale to every view or make it global so I created a wrapper around the <em>nf</em> and <em>df</em> value converters.
+These wrapper value converters always requesting the current locale first so you don´t have to provide this value in every view or make it global.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>autoinject<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-framework'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span><span class="token constant">I18N</span><span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-i18n'</span><span class="token punctuation">;</span>
+
+@<span class="token function">autoinject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CnfValueConverter</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> <span class="token literal-property property">i18n</span><span class="token operator">:</span> <span class="token constant">I18N</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token function">toView</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">value</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> numberFormatFunc <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>i18n<span class="token punctuation">.</span><span class="token function">nf</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>i18n<span class="token punctuation">.</span><span class="token function">getLocale</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> numberFormatFunc<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>
+This approach was fitting for me because I don´t need the options. You could also extend the custom value converter parameters with a options object.
+The custom date format value converter would look similar. Then you can use them like this
+</P>
+<pre class="language-js"><code class="language-js"> $<span class="token punctuation">{</span> <span class="token number">1234567.890</span> <span class="token operator">|</span> cnf <span class="token punctuation">}</span> 
+ $<span class="token punctuation">{</span> myDate <span class="token operator">|</span> cdf <span class="token punctuation">}</span></code></pre>
+<h2>Locale selectbox</h2>
+<p>
+I had to implement a selectbox to let the user easily change the locale. I wanted to style the selectbox properly and enable the user to search for a specific locale. Thus I choose the
+ <a href="https://select2.github.io/" title="link to select2 plugin">Select2 plugin</a> and orientated on this <a href="http://ilikekillnerds.com/2015/08/aurelia-custom-element-using-select2-tutorial/">blog post from Dwayne</a>.
+</p>
+<p>
+Similar to the blog post I created a custom element <em>language-switch</em> but instead of using events I am using a bindable property because I wanted to get the whole selected object and not only the key.
+</p>
+<pre class="language-html"><code class="language-html">
+//language-switch.html
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>require</span> <span class="token attr-name">from</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>select2/css/select2.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>require</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name.bind</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">value.bind</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selected<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>custom-selectbox<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">repeat.for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option of options<span class="token punctuation">"</span></span> <span class="token attr-name">model.bind</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>${option.label &amp; t}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<pre class="language-js"><code class="language-js"><span class="token comment">//language-switch.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>bindable<span class="token punctuation">,</span> inject<span class="token punctuation">,</span> customElement<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-framework'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> $ <span class="token keyword">from</span> <span class="token string">'jquery'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'select2'</span><span class="token punctuation">;</span>
+
+@<span class="token function">inject</span><span class="token punctuation">(</span>Element<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LanguageSwitch</span> <span class="token punctuation">{</span>
+  @bindable name<span class="token operator">:</span> string <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  @bindable selected<span class="token operator">:</span> any <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  @bindable options<span class="token operator">:</span> Array<span class="token operator">&lt;</span>any<span class="token operator">></span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>element <span class="token operator">=</span> element<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">attached</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>element<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'select'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">select2</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">event</span><span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>selected <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>selectedOptions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>model<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">detached</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>element<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select2</span><span class="token punctuation">(</span><span class="token string">'destroy'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class="language-js"><code class="language-js"><span class="token comment">//language option model</span>
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span><span class="token string-property property">'key'</span><span class="token operator">:</span> <span class="token string">'de'</span><span class="token punctuation">,</span> <span class="token string-property property">'label'</span><span class="token operator">:</span> <span class="token string">'Germany'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string-property property">'key'</span><span class="token operator">:</span> <span class="token string">'en'</span><span class="token punctuation">,</span> <span class="token string-property property">'label'</span><span class="token operator">:</span> <span class="token string">'English'</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<h2>Safari und Intl</h2>
+<p>
+<em>aurelia-i18n</em> uses <a href="" title="link to i18next">i18next</a> a widely known internationalization library which depends on the <em>window.Intl</em> API. Unfortunately, the 
+<a href="http://caniuse.com/#search=intl" title="support of intl"> browser support </a> for this API is limited.
+Thus for supporting Safari and some mobile browsers you have to install the polyfill <a href="https://github.com/andyearnshaw/Intl.js/" title="link to intl polyfill">intl.js</a>
+</p>
+<pre class="language-bash"><code class="language-bash"> jspm <span class="token function">install</span> npm:intl</code></pre>
+<p>
+and include it somewhere in your project and into your bundles
+</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">'intl'</span><span class="token punctuation">;</span> <span class="token comment">//in main.ts or like me in some own translation service</span></code></pre>
+<p>
+<em>Aurelia-i18n</em> will only take this polyfill if <em> window.Intl</em> is not available, therefore you don´t need to install extra typings for it. 
+</p>
+<p>
+But that fixed not all of my problems and it caused me some headache to figure out how to solve them. I discovered that you have to include a JSON file for every locale you are supporting in order to use <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">numberformat</a> and <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">dateformat</a>.
+So I created a file where I included all needed locales and imported this file in my project. Next to that, you could use this file for determining supported languages for the <i>language-switch</i>.
+</p>
+<pre class="language-html"><code class="language-html">import 'intl/locale-data/jsonp/de';
+import 'intl/locale-data/jsonp/de-DE';
+import 'intl/locale-data/jsonp/en';
+import 'intl/locale-data/jsonp/en-US';</code></pre>
+<p>
+You can include the whole folder or use the <em>complete.js</em> for importing all locales but because all these files together have a size over 56MB I choose to add them manually.
+For more optimizations you could load <em>intl.js</em> and all the needed locale files only if <em>window.intl</em> is not available.
+</p>
+<h2>Unit Testing</h2>
+<p>
+When using the <a href="https://github.com/aurelia/i18n#translating-with-the-tvalueconverter" title="link to tvalue converter">TValueConverter</a> or
+ <a href="https://github.com/aurelia/i18n#translating-with-the-tbindingbehavior" title="link to t binding behavior"> TBindingBehavior</a> in the view of the custom element I was testing, 
+ the compiler was complaining about "No BindingBehavior named 't' was found!"
+What helped was to include <em>t</em> manually to the test.
+Given this custom element
+</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>bindable<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-framework'</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token punctuation">{</span>
+  @bindable firstName<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>
+and given this unit test, you can include the binding behavior with 
+</p>
+<pre class="language-js"><code class="language-js"> <span class="token punctuation">.</span><span class="token function">withResources</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'...'</span><span class="token punctuation">,</span> <span class="token string">'aurelia-i18n/t'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">//the binding behavior is defined in a own file under aurelia-i18n named 't.js'</span></code></pre>
+<p>
+<p>Here is a complete example extending the custom element testing example from <a href="http://aurelia.io/hub.html#/doc/article/aurelia/testing/latest/testing-components/3">Aurelia HUB page</a></p>
+</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>StageComponent<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-testing'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>bootstrap<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'aurelia-bootstrapper'</span><span class="token punctuation">;</span>
+
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'MyComponent'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> component<span class="token punctuation">;</span>
+
+  <span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    component <span class="token operator">=</span> StageComponent
+      <span class="token punctuation">.</span><span class="token function">withResources</span><span class="token punctuation">(</span><span class="token string">'src/my-component'</span><span class="token punctuation">,</span> <span class="token string">'aurelia-i18n/t'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">inView</span><span class="token punctuation">(</span><span class="token string">'&lt;my-component first-name.bind="firstName">&lt;/my-component>'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">boundTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">firstName</span><span class="token operator">:</span> <span class="token string">'Bob'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should render first name'</span><span class="token punctuation">,</span> <span class="token parameter">done</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    component<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>bootstrap<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> nameElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.firstName'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">expect</span><span class="token punctuation">(</span>nameElement<span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token string">'Bob'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    component<span class="token punctuation">.</span><span class="token function">dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>
+Hopefully, this will help someone using aurelia-i18n or when struggling with Safari support.
+Feel free to write me an Email or create a pull request if I missed something.
+</p>
+
+
+  <p class="contact-me-box">
+  Found some typo, want to give feedback or discuss? Feel free to contact me :)
+  </p>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+      
+     
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy;  Katharina Bähr | Theme by <a href="https://github.com/brianmaierjr/long-haul" target="_blank" alt="link to brianmaierjr on github">brianmaierjr </a></p>
+      <div class="footer-links"> 
+         <ul class="noList"> 
+           
+            
+            <li><a href="https://twitter.com/">
+                  <svg id="twitter" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="https://github.com/">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+             
+            
+            <li><a href="mailto:">
+                  <svg id="mail" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 50px; width: 50px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"></path>
+                  </svg>
+            </a></li>
+            
+         </ul>
+      </div>
+   </div>
+</div><!-- end .footer -->
+
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="\{\{ \'/assets/js/jquery-1.11.2.min.js\' | prepend: site.baseurl \}\}"><\/script>')</script>
+<script src="/assets/js/dropcap.min.js"></script>
+<script src="/assets/js/responsive-nav.min.js"></script>
+<script src="/assets/js/scripts.js"></script>
+
+
+</body>
+
+</html>

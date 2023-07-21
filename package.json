@@ -1,0 +1,27 @@
+{
+  "name": "kabaehr.github.io",
+  "version": "1.0.0",
+  "description": "Personal Blog",
+  "main": "index.js",
+  "scripts": {
+    "watch:eleventy": "npx @11ty/eleventy --serve",
+	  "watch:sass": "npx sass ./assets/scss:_site/assets/css --watch",
+	  "start": "npm run watch:eleventy & npm run watch:sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kabaehr/kabaehr.github.io.git"
+  },
+  "author": "Katharina Baehr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kabaehr/kabaehr.github.io/issues"
+  },
+  "homepage": "https://github.com/kabaehr/kabaehr.github.io#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "sass": "^1.64.0"
+  }
+}

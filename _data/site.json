@@ -1,0 +1,11 @@
+{
+    "title": "Web dev and more",
+    "tagline": "Software Developer",
+    "description": "Blog where I share my programming and web development experiences",
+    "author": "Katharina Bähr",
+    "url": "http://kabaehr.github.io/",
+    "baseUrl": "/",
+    "github": "kabaehr",
+    "twitter": "kabaehr",
+    "email": "katharina.baehr@zuehlke.com"
+}

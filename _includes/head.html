@@ -24,7 +24,8 @@
       <meta name="twitter:image:src" content="{{ site.url }}/path/to/image/logo.png">
     {% endif %}
     
-    <title>{{ page.title }}</title>
+    <title>{{ title }}</title>
+    <title>{{ site.title }}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | prepend: site.baseurl }}" />
@@ -34,11 +35,9 @@
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ "/assets/css/style.css" | prepend: site.baseurl }}">
-    <!--[if IE 8]><link rel="stylesheet" href="{{ "/assets/css/ie.css" | prepend: site.baseurl }}"><![endif]-->
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <!-- Modernizr -->
-   <!-- <script src="{{ "/assets/js/modernizr.custom.15390.js" | prepend: site.baseurl }}" type="text/javascript"></script> -->
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
 
   
 </head>

@@ -1,6 +1,10 @@
 ---
 layout: default
 title: Impressum
+eleventyNavigation:
+  title: Impressum
+  url: /impressum
+  order: 3
 ---
 
 <div class="post">

@@ -18,18 +18,18 @@ In Aurelia, you can bind on nearly every <a href="https://developer.mozilla.org/
 
 So assuming the following code keyboard event binding:
 
-{% highlight html %}
+```html
 
 <input type="text" keypress.delegate="handleKeypress($event)" />
 
-{% endhighlight %}
+```
 
 
-{% highlight javascript %}
+```js
 handleKeypress($event) {
   console.log($event);
 }
-{% endhighlight %}
+```
 
 The <code>handleKeypress</code> method will log the pressed key, but the pressed key will not appear as a value in the input field.
 The same happens when using <code>keydown.bind</code> but not when using <code>keyup.bind</code>.
@@ -43,12 +43,12 @@ Aurelia calls <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/pr
 
 So in order to check the typed key and allow them (or just some typed keys) to appear in the input field you have to <code>return true</code>;
 
-{% highlight javascript %}
+```js
 handleKeypress($event) {
   console.log($event);
   return true;
 }
-{% endhighlight %}
+```
 
 
 <a href="https://gist.run/?id=2edbd8579faec322f1474a6a9ac126da&sha=2376359c565cd2497bb78a47399514140da59207">

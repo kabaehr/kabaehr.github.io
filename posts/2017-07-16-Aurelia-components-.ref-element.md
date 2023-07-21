@@ -48,27 +48,27 @@ You can use <code>element.ref</code> (or just <code>ref</code>) on every HTMLEle
 
 Usage:
 
-{% highlight html %}
+```html
 //app.html
 <div ref="elementRef">
   <span> Some text </span>
 </div>
 
-{% endhighlight %} 
+``` 
 
-{% highlight javascript %}
+```js
 //app.js
 export class App {
   attached() {
     console.log(this.elementRef);
   }
 }
-{% endhighlight %}
+```
 
 This usage of <code>element.ref</code> is the most common one. You can use it for referencing specific DOM elements in your own custom component too. We are using it a lot when working with <a href="https://d3js.org/" title="d3 chart libary">d3.js</a> or <a href="https://www.w3schools.com/html/html5_canvas.asp" title="HTML Canvas on w3schools">HTML Canvas</a> because you can do things like:
 
 
-{% highlight javascript %}
+```js
 //some-chart.js
 export class SomeChart {
   attached() {
@@ -79,7 +79,7 @@ export class SomeChart {
     let container = d3.select(this.chartContainerRef);
   }
 }
-{% endhighlight %}
+```
 
 
 <h3> Reference View </h3>
@@ -90,21 +90,21 @@ Using <code>view.ref</code> we get access to the Aurelia view instance, having a
 
 Usage:
 
-{% highlight html %}
+```html
 //app.html
 <custom-element view.ref="viewRef"></custom-element>
 
-{% endhighlight %} 
+``` 
 
 
-{% highlight javascript %}
+```js
 //app.js
 export class App {
   attached() {
     console.log(this.viewRef);
   }
 }
-{% endhighlight %}
+```
 
 Have a look at the <a href="http://aurelia.io/hub.html#/doc/article/aurelia/binding/latest/binding-how-it-works/1" title="view factory documentation">documentation</a> to understand what you can do with the ViewFactory or see this <a href="https://gist.run/?id=762c00133d5d5be624f9" title="gitter gist with view factory example"> advanced example</a> from an aurelia core team member on how to use the ViewFactory.
 
@@ -114,7 +114,7 @@ Referencing the view model of an element or attribute gives us access to the und
 
 Usage:
 
-{% highlight html %}
+```html
 //app.html
 
 //element view model
@@ -123,9 +123,9 @@ Usage:
 //attribute view model
 <div custom-attribute="value: 42" custom-attribute.ref="attributeRef"></custom-element>
 
-{% endhighlight %} 
+``` 
 
-{% highlight javascript %}
+```js
 //app.js
 export class App {
   attached() {
@@ -133,7 +133,7 @@ export class App {
     console.log(this.vmRef);
   }
 }
-{% endhighlight %}
+```
 
 
 <h3> Reference Controller </h3>
@@ -145,20 +145,20 @@ The controller owns the view model and the view and composes them together. The 
 
 Usage:
 
-{% highlight html %}
+```html
 //app.html
 <custom-element controller.ref="ctrlRef"></custom-element>
-{% endhighlight %} 
+``` 
 
 
-{% highlight javascript %}
+```js
 //app.js
 export class App {
   attached() {
     console.log(this.ctrlRef);
   }
 }
-{% endhighlight %}
+```
 
 <a href="http://aurelia.io/hub.html#/doc/article/aurelia/binding/latest/binding-how-it-works/1">See the official docs for more explanations about the controller.</a>
 

@@ -22,7 +22,7 @@ The structure I would use today is nothing new but a combination of the structur
 I am going to describe the structure as I would create it, therefore I am using TypeScript files.
 For JavaScript, the structure would look the same just with .js instead of .ts file endings.
 
-{% highlight text %}
+```text
 //example:
 
 src/
@@ -63,7 +63,7 @@ src/
 │          └── post.spec.ts
 
 
-{% endhighlight %} 
+``` 
 
 This structure is not showing all directories you might need. There could be also other folders like *assets/fonts* or *posts/services* etc... I hope you get the idea.
 
@@ -75,7 +75,7 @@ a tests directory could make sense.
 <h3> Naming </h3>
 I recommend naming things in a way that they indicate what they are. See the *posts/* directory with the *person-service.ts*, *person-model.ts* and *person.ts*. This might look redundant but as your project grows you will be confused if you have a structure
 where you only differentiate between files by putting them in corresponding folders.
-{% highlight text %}
+```text
 
 //I recommend to not structure your application like this
 
@@ -87,7 +87,7 @@ where you only differentiate between files by putting them in corresponding fold
 │   └── models
 │       └── post.ts
 
-{% endhighlight %}
+```
 
 Additionally using shortcuts like CTRL+P to open a file will get harder because you have to look at the file path to distinguish between the three *post.ts* files.
 

@@ -13,6 +13,7 @@ author:  "Katharina Bähr"
 We are going to use the <a href="https://oauth.net/2/">OAuth2</a> <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols-implicit">implicit grant flow</a>. This flow is optimized for public clients and mainly used for Single-page and JavaScript applications.
 
 <h3>Login and Logout</h3>
+<p>
 At first, you need to implement the login process. This consists out of three steps:
 
 1. Sending an Auth request to your Authority
@@ -20,6 +21,8 @@ At first, you need to implement the login process. This consists out of three st
 3. Store and manage the token 
 
 This is Aurelia unspecific and could (and maybe should) be done even before the Aurelia application started. Routing to the authority and handling the redirect is easy, but manage the token not necessarily. This would include: saving the tokens in some storage (e.g. sessionStorage), checking when the tokens expire (parsing the JWT token), deleting old tokens etc...
+
+</p>
 
 <h3> Aurelia AuthorizeStep </h3>
 

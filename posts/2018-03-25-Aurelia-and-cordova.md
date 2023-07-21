@@ -10,29 +10,31 @@ author:  "Katharina Bähr"
 
 
 <h2>First steps</h2>
+<p>
 Including Cordova into your Aurelia app is quite simple. At first, you need to download Cordova and install the needed Cordova platforms you want to  develop for. You can do this with:
+</p>
 
-{% highlight bash %}
+```bash
 npm install cordova -g
-{% endhighlight %}
+```
 
 
 There are multiple possibilities to set up your Aurelia-Cordova project, one way could be to create your Aurelia project inside the `cordova/www` folder (recommended if you only need to support app platforms like Android and iOS) or you can create the Cordova project inside of your Aurelia project (if you also want to run your application in the browser like a common Aurelia project) and copy the sources through some build tool. The latter one is the way how we developed our application.
 
 For the latter approach create a folder named *cordova* (or however you want) and create a Cordova project by running
 
-{% highlight bash %}
+```bash
 cordova create . [id [name [config]]] [options] 
-{% endhighlight %}
+```
 
 See documentation below for the optional parameters.
 
 
 If the project is created you can now add the needed platforms with:
 
-{% highlight bash %}
+```bash
 cordova platform add <android/ios>
-{% endhighlight %}
+```
 
 For more details on how to install, create and run a Cordova project see the <a href="https://cordova.apache.org/docs/en/latest/guide/cli/">documentation</a>.
 
@@ -50,7 +52,7 @@ The sources Cordova is packaging into an app, need to lay inside the `cordova/ww
 
 We created some tasks that copy either our `debug` or the `release` sources into the `www` folder.
 
-{% highlight javascript %}
+```js
 
 gulp.task('cordova-copy-files', ['export', 'clean-cordova'], function () {
 	return gulp.src(paths.exportSrv + "**/*")
@@ -70,12 +72,12 @@ gulp.task('copy-debug-dist-files', function () {
 		.pipe(gulp.dest(paths.cordovaSrc));
 });
 
-{% endhighlight %}
+```
 
 Another build step that is necessary, is to include `cordova.js` in the body in the `index.html`.
 We do this via gulp because we only want to do it, when we build the app for Cordova, so we can still use it on the desktop.
 
-{% highlight bash %}
+```bash
 
 gulp.task('cordova-inject-body', function () {
 	return gulp.src(paths.cordovaSrc + paths.index)
@@ -83,7 +85,7 @@ gulp.task('cordova-inject-body', function () {
 		.pipe(gulp.dest(paths.cordovaSrc));
 });
 
-{% endhighlight %}
+```
 
 In general it was quite easy to adjust our gulp build tasks for Cordova.
 
@@ -93,6 +95,7 @@ To reduce this overhead a bit we also wrote some *fast* builds, which only copy 
 
 
 <h2>Platform specifics and plugins</h2>
+<p>
 We use several Cordova plugins but the two with the deepest platform-specific integration is the <a href="https://github.com/randdusing/cordova-plugin-bluetoothle">bluetoothle-plugin</a> and the <a href="https://github.com/apache/cordova-plugin-file">file-system-plugin</a>.
 
 With these we are able to download and store files and to establish a Bluetooth connection and read data from other Bluetooth devices.
@@ -101,14 +104,15 @@ With these we are able to download and store files and to establish a Bluetooth 
 This works out quite okay but since these are extra layers which try to unify the existing platform-specific implementations and flaws, you can't expect too much. You will have to read carefully through the documentation and write some platform-specific code. 
 
 For this you will have to check for the specific platform with:
+</p>
 
-{% highlight javascript %}
+```js
 
  if (window.cordova && window.cordova.platformId === 'android') {
    //platform specific code here
  }
 
-{% endhighlight %}
+```
 
 Also, you can't expect that everything that is possible on a native platform is also possible via cordova and that there is an existing stable plugin. But you can write own plugins.
 

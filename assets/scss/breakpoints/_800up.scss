@@ -8,9 +8,9 @@ GLOBAL STYLES
 	z-index: 1;
 
 	&:after {
-		z-index: -1; 
+		z-index: -1;
 		background: white;
-		content: ""; 
+		content: "";
 		display: block;
 		width: 100%;
 		height: 5em;
@@ -22,23 +22,23 @@ GLOBAL STYLES
 		transform: skewY(-2deg);
 		-webkit-transform-origin: bottom left;
 		-ms-transform-origin: bottom left;
-		transform-origin: bottom left; 
+		transform-origin: bottom left;
 	}
 }
 
 .container {
-	@include container(800px); 
+	@include container(800px);
 	padding: 0;
 }
-
 
 /***************
 HOMEPAGE STYLING
 ***************/
 
 #home {
-	.posts, .pageTitle, .pagination {
-		@include span(9 of 12);
+	.posts,
+	.pageTitle,
+	.pagination {
 		float: none;
 		margin: 0 auto 1.5em;
 	}
@@ -47,7 +47,6 @@ HOMEPAGE STYLING
 		margin: 2rem auto 1em;
 	}
 }
-
 
 /***************
 HEADER STYLING
@@ -64,7 +63,7 @@ HEADER STYLING
 		-webkit-transform: translateY(-50%);
 		-ms-transform: translateY(-50%);
 		transform: translateY(-50%);
-		@include container(800px); 
+		@include container(800px);
 	}
 
 	h1 {
@@ -89,9 +88,9 @@ HEADER STYLING
 
 				a {
 					color: white;
-					font-size: .9em;
+					font-size: 0.9em;
 					text-decoration: none;
-					padding: 0 .25em;
+					padding: 0 0.25em;
 
 					&:hover {
 						color: darken(white, 20%);
@@ -99,27 +98,25 @@ HEADER STYLING
 				}
 
 				&.current {
-					padding-bottom: .25em;
-					border-bottom: 4px solid rgba(255,255,255,.4); 
+					padding-bottom: 0.25em;
+					border-bottom: 4px solid rgba(255, 255, 255, 0.4);
 				}
 			}
 		}
 	}
 }
 
-
 /***************
 MENU STYLING
 ***************/
 
 .js {
-
 	.nav-collapse {
-	  position: relative;
-	  max-height: none;
+		position: relative;
+		max-height: none;
 
 		&.closed {
-		  max-height: none; 
+			max-height: none;
 		}
 
 		ul li a {
@@ -129,23 +126,42 @@ MENU STYLING
 }
 
 .nav-toggle {
-  display: none;
+	display: none;
 }
-
 
 /***************
 POST STYLING
 ***************/
 
 .post {
-	h1, h2, h3, h4, h5, h6, p, ul, ol, dl, .pageTitle {
-		@include span(9 of 12); 
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	ul,
+	ol,
+	dl,
+	.pageTitle {
 		float: none;
-		margin: 0 auto 2rem; 
+		margin: 0 auto 2rem;
 	}
 
-	h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-		margin: 1rem auto; 
+	h1,
+	.h1,
+	h2,
+	.h2,
+	h3,
+	.h3,
+	h4,
+	.h4,
+	h5,
+	.h5,
+	h6,
+	.h6 {
+		margin: 1rem auto;
 	}
 
 	.pageTitle {
@@ -175,14 +191,13 @@ POST STYLING
 	}
 }
 
-
 /***************
 POST NAV STYLING
 ***************/
 
 .postNav {
-
-	.prev, .next {
+	.prev,
+	.next {
 		width: 50%;
 	}
 
@@ -196,7 +211,6 @@ POST NAV STYLING
 		float: right;
 	}
 }
-
 
 /***************
 FOOTER STYLES
@@ -214,20 +228,5 @@ FOOTER STYLES
 	.container {
 		padding: 1rem 0;
 		@include container(800px);
-	}
-}
-
-
-/***************
-CONTACT PAGE STYLING
-***************/
-
-.contactContent {
-	@include span(6 of 12);
-}
-
-#contact {
-	form {
-		@include span(6 of 12 last);
 	}
 }

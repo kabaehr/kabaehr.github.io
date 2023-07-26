@@ -16,7 +16,7 @@ eleventyNavigation:
         Kirchstraße 38 <br /> 
         37242 Bad Sooden Allendorf<br /> <br /> 
         Tel: +49 172 2518544 <br /> 
-        E-Mail: katharina.baehr02@gmail.com <br /> 
+        E-Mail: webmaster@kabaehr.de <br /> 
     </p>
 		
 </div>
